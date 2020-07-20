@@ -1,10 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import main from './scss/main.scss';
+import Main from './components/Main';
+
+
 
 function App() {
+
   return (
-    <h1>AAADDDDDD</h1>
+    <>
+      <Main />
+    </>
   );
 }
 
