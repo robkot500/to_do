@@ -5,12 +5,14 @@
 body{
     font-family: 'Roboto', sans-serif;
     background-color: lightgray;
+    overflow-x: hidden;
 }
 .mobile{
     border: 1px solid black;
-    width: 420px;
+    width: 500px;
     height: 1020px;
-    margin: 35px auto 35px 200px;
+    margin: 35px 50vw 35px 10vw;
+   
 }
 header{
     height: 30%;
@@ -59,10 +61,17 @@ header{
     }    
     }    
 }
-@media screen and (max-width: 720px){
+@media screen and (max-width: 900px){
     .mobile{
-        // width: 100%;
+       
         margin: 35px auto;
+    }
+}
+@media screen and (max-width: 500px){
+    .mobile{
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
     }
 }
 .list{
