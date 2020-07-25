@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 function Header(props) {
 
-    console.log(props);
+    console.log('sss', props);
     const handleClick = (e) => {
-        console.log(e.target.id);
+        console.log('aaaa', e.target.id);
         if (e.target.id === 'list') {
             props.display(e.target.id)
         } if (e.target.id === 'task') {
@@ -20,9 +20,9 @@ function Header(props) {
             <div className='up'></div>
             <div className='down'>
                 <div className="button-wrapper">
-                    <div id='list' onClick={(id) => handleClick(id)} className={props.position === 'list' ? ('button button-additional') : ('button')}>LIST</div>
-                    <div id='task' onClick={(id) => handleClick(id)} className={props.position === 'task' ? ('button button-additional') : ('button')}>TASK</div>
-                    <div id='add' onClick={(id) => handleClick(id)} className={props.position === 'add' ? ('button button-additional') : ('button')}>ADD</div>
+                    <div id='list' onClick={(id) => handleClick(id)} className={props.position.position === 'list' ? ('button button-additional') : ('button')}>LIST</div>
+                    <div id='task' onClick={(id) => handleClick(id)} className={props.position.position === 'task' ? ('button button-additional') : ('button')}>TASK</div>
+                    <div id='add' onClick={(id) => handleClick(id)} className={props.position.position === 'add' ? ('button button-additional') : ('button')}>ADD</div>
                 </div>
                 <div className='button-box'></div>
             </div>
@@ -36,10 +36,10 @@ const mapStateToProps = (state) => {
         position: state.position
     }
 }
-const mapDipatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         display: (id) => { dispatch({ type: 'DISPLAY', id: id }) }
     }
 }
 
-export default connect(mapStateToProps, mapDipatchToProps)(Header)
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

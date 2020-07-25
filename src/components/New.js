@@ -5,7 +5,6 @@ function New() {
         <div className='mobile'>
             <div className='up'></div>
             <div className='down'>
-
             </div>
         </div>
     )

@@ -7,12 +7,16 @@ import { connect } from 'react-redux';
 
 function Main(props) {
     console.log(props);
+    // let position
+    // if (props.position.position === true) {
+    //     position = 'task'
+    // }
     return (
         <div className='mobile'>
             <Header />
-            {props.position === 'list' ? <List /> : null}
-            {props.position === 'task' ? <Task /> : null}
-            {props.position === 'add' ? <Add /> : null}
+            {props.position.position === 'list' ? <List /> : null}
+            {props.position.position === 'task' ? <Task /> : null}
+            {props.position.position === 'add' ? <Add /> : null}
         </div>
     )
 }

@@ -1,18 +1,11 @@
-const initState = {
-    position: "list"
-}
+import positionReducer from './positionReducer'
+import itemReducer from './itemReducer'
+import { combineReducers } from 'redux'
 
-const rootReducer = (state = initState, action) => {
-    console.log(state);
-    switch (action.type) {
-        case 'DISPLAY':
-            console.log(action.id)
-            return {
-                ...state,
-                position: action.id
-            }
-    }
-    return state
-}
+const rootReducer = combineReducers({
+    position: positionReducer,
+    item: itemReducer
+});
+
 
 export default rootReducer
