@@ -30,6 +30,7 @@ function Add(props) {
         console.log(newTask.id);
         props.displayDetail(newTask.id)
         props.display('task')
+
     }
 
     return (
