@@ -3,20 +3,23 @@ import { connect } from 'react-redux'
 
 function Task(props) {
     console.log(props);
-    // console.log(props.items.items[0].detail.pointOne);
-    const itemDetail = props.items.items.filter(each => {
+    // console.log(props.items.todos[0].detail.pointOne);
+    const itemDetail = props.items.todos.filter(each => {
         return each.id === props.items.selectedItem.id
     })
     const clickDelete = (id) => {
         props.deleteItem(id)
     }
     const [details] = itemDetail
-    console.log(itemDetail.length);
-    console.log(itemDetail);
+    console.log(details);
     if (itemDetail.length < 1) {
         console.log('lelelelle');
         return (
-            <p>You have no todos left</p>
+            <div className='title'>
+                <div className='title-wrapper'>
+                    <p>You have no todos left</p>
+                </div>
+            </div>
         )
     }
     return (
@@ -28,7 +31,9 @@ function Task(props) {
                 </div>
                 <i onClick={() => { clickDelete(details.id) }} className="fas fa-trash-alt"></i>
             </div>
-            <div className='points'></div>
+
+            <p>{details.detail.pointOne}</p>
+
         </div>
     )
 }

@@ -16,15 +16,16 @@ function List(props) {
     }
 
 
-    const display = props.items.items.map(task => {
+    const display = props.items.todos.map(task => {
         console.log(task.selected);
         return (
             <div key={task.id} className='item'>
                 <div className='title'>
                     <div className='title-wrapper'>
-                        <input type="checkbox" id="todo" name="todo" value="todo" />
-                        <label htmlFor="todo" data-content={task.title}>{task.title}</label>
-
+                        {/* <input type="checkbox" id="todo" name="todo" value="todo" />
+                        <label htmlFor="todo" data-content={task.title}>{task.title}</label> */}
+                        <input id={task.id} type="checkbox" />
+                        <label for={task.id}>{task.title}</label>
                     </div>
                     <i onClick={() => { clickDelete(task.id) }} className="fas fa-trash-alt"></i>
                 </div>
