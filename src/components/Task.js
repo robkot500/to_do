@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 function Task(props) {
     console.log(props);
-    // console.log(props.items.todos[0].detail.pointOne);
     const itemDetail = props.items.todos.filter(each => {
         return each.id === props.items.selectedItem.id
     })
@@ -11,9 +10,7 @@ function Task(props) {
         props.deleteItem(id)
     }
     const [details] = itemDetail
-    console.log(details);
     if (itemDetail.length < 1) {
-        console.log('lelelelle');
         return (
             <div className='title'>
                 <div className='title-wrapper'>
@@ -22,6 +19,13 @@ function Task(props) {
             </div>
         )
     }
+    console.log(itemDetail);
+    const alldetails = details.detail.map(each => {
+        console.log(each);
+        return (
+            <p key={each.point}>{each.point}</p>
+        )
+    })
     return (
         <div className='task-container'>
             <div className='title'>
@@ -32,7 +36,7 @@ function Task(props) {
                 <i onClick={() => { clickDelete(details.id) }} className="fas fa-trash-alt"></i>
             </div>
 
-            <p>{details.detail.pointOne}</p>
+            {alldetails}
 
         </div>
     )

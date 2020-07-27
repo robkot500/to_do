@@ -3,18 +3,26 @@ const initItem = {
         {
             title: 'Get out of bed',
             id: 1,
-            detail: {
-                pointOne: 'wake my wife up',
-                pointTwo: 'check the weather'
-            }
+            detail: [
+                { point: 'wake my wife upGG' },
+                { point: 'check the weatherGG' },
+                { point: 'check the weatherGGG' }
+
+
+
+            ]
+
+
         },
         {
             title: 'Walk the dog',
             id: 2,
-            detail: {
-                pointOne: 'wake my wife up',
-                pointTwo: 'check the weather'
-            }
+            detail: [
+                { point: 'wake my wife upWW' },
+                { point: 'check the weatherWW' },
+                { point: 'check the weatherWWW' },
+
+            ]
         }
     ],
     selectedItem: {

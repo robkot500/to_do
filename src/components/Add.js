@@ -3,26 +3,38 @@ import { connect } from 'react-redux'
 
 function Add(props) {
     console.log(props);
-    const newTask = {
+    let newTask = {
         title: null,
         id: null,
-        detail: {
-            pointOne: null,
-            pointTwo: null
-        }
+        detail: [
+            { point: null },
+            { point: null },
+            { point: null }
+        ]
     }
 
+    console.log(newTask.detail[1]);
     const handleChange = (e) => {
         if (e.target.id === 'newTask') {
             newTask.title = e.target.value
+            console.log(e.target.value);
+            console.log(newTask.title);
         } if (e.target.id === 'pointOne') {
-            newTask.detail.pointOne = e.target.value
+            newTask.detail[1] = { point: e.target.value }
+            console.log(e.target.value);
+            console.log(newTask.detail);
         } if (e.target.id === 'pointTwo') {
-            newTask.detail.pointTwo = e.target.value
-        } if (e.target.id === 'pointTwo') {
-            newTask.detail.pointTwo = e.target.value
+            newTask.detail[2] = { point: e.target.value }
+        } if (e.target.id === 'pointThree') {
+            newTask.detail[3] = { point: e.target.value }
         }
         newTask.id = new Date().getTime()
+        console.log(newTask);
+        // newTask = [
+        //     { ...newTask, [newTask.detail]: e.target.value }
+        // ]
+
+        console.log(newTask);
     }
     const handleSubmit = (e, id) => {
         e.preventDefault()
