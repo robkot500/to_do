@@ -10,19 +10,19 @@ label {
 
 /*** custom checkboxes ***/
 
-input[type=checkbox] { display:none; } /* to hide the checkbox itself */
-input[type=checkbox] + label:before {
+.title-check{ display:none; } /* to hide the checkbox itself */
+.title-check+ .title-label:before {
   font-family: FontAwesome;
   display: inline-block;
   // color: blue;
 }
 
-input[type=checkbox] + label:before { content: "\f096"; } /* unchecked icon */
-input[type=checkbox] + label:before { letter-spacing: 13px;font-size: 34px; } /* space between checkbox and label */
+.title-check + .title-label:before { content: "\f096"; } /* unchecked icon */
+.title-check + .title-label:before { letter-spacing: 13px;font-size: 34px; } /* space between checkbox and label */
 
-input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
-input[type=checkbox]:checked + label:before { letter-spacing: 10px; color:gray;font-size: 34px;} /* allow space for check mark */
-input[type=checkbox]:checked + label{
+.title-check:checked + .title-label:before { content: "\f046"; } /* checked icon */
+.title-check:checked + .title-label:before { letter-spacing: 10px; color:gray;font-size: 34px;} /* allow space for check mark */
+.title-check:checked + .title-label{
   text-decoration: line-through;
   color:gray;
 }
@@ -30,7 +30,22 @@ input[type=checkbox]:checked + label{
 
 .fa-circle-o-notch{
   font-size: 30px;
-  // font-family: ;
   color: black;
+}
+.point-check{ display:none; } /* to hide the checkbox itself */
+.point-check+ .point-label:before {
+  font-family: FontAwesome;
+  display: inline-block;
+  // color: blue;
+}
+
+.point-check + .point-label:before { content: "\f096"; } /* unchecked icon */
+.point-check + .point-label:before { letter-spacing: 13px;font-size: 34px; } /* space between checkbox and label */
+
+.point-check:checked + .point-label:before { content: "\f046"; } /* checked icon */
+.point-check:checked + .point-label:before { letter-spacing: 10px; color:gray;font-size: 34px;} /* allow space for check mark */
+.point-check:checked + .point-label{
+  text-decoration: line-through;
+  color:gray;
 }
 

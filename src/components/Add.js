@@ -13,28 +13,24 @@ function Add(props) {
         ]
     }
 
-    console.log(newTask.detail[1]);
+    console.log(newTask);
     const handleChange = (e) => {
         if (e.target.id === 'newTask') {
             newTask.title = e.target.value
             console.log(e.target.value);
             console.log(newTask.title);
         } if (e.target.id === 'pointOne') {
-            newTask.detail[1] = { point: e.target.value }
+            newTask.detail[0] = { point: e.target.value }
             console.log(e.target.value);
             console.log(newTask.detail);
         } if (e.target.id === 'pointTwo') {
-            newTask.detail[2] = { point: e.target.value }
+            newTask.detail[1] = { point: e.target.value }
         } if (e.target.id === 'pointThree') {
-            newTask.detail[3] = { point: e.target.value }
+            newTask.detail[2] = { point: e.target.value }
         }
         newTask.id = new Date().getTime()
-        console.log(newTask);
-        // newTask = [
-        //     { ...newTask, [newTask.detail]: e.target.value }
-        // ]
-
-        console.log(newTask);
+        console.log(newTask.detail);
+        // newTask = { ...newTask, [newTask.detail.point]: e.target.value }
     }
     const handleSubmit = (e, id) => {
         e.preventDefault()

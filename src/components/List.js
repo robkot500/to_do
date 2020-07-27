@@ -22,8 +22,8 @@ function List(props) {
             <div key={task.id} className='item'>
                 <div className='title'>
                     <div className='title-wrapper'>
-                        <input id={task.id} type="checkbox" />
-                        <label htmlFor={task.id}>{task.title}</label>
+                        <input className='title-check' id={task.id} type="checkbox" />
+                        <label className='title-label' htmlFor={task.id}>{task.title}</label>
                     </div>
                     <i onClick={() => { clickDelete(task.id) }} className="fas fa-trash-alt"></i>
                 </div>

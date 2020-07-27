@@ -2,25 +2,22 @@ const initItem = {
     todos: [
         {
             title: 'Get out of bed',
+            titleMarked: false,
             id: 1,
             detail: [
-                { point: 'wake my wife upGG' },
-                { point: 'check the weatherGG' },
-                { point: 'check the weatherGGG' }
-
-
-
+                { point: 'wake my wife upGG', pointMarked: false },
+                { point: 'check the weatherGG', pointMarked: false },
+                { point: 'check the weatherGGG', pointMarked: false }
             ]
-
-
         },
         {
             title: 'Walk the dog',
+            titleMarked: false,
             id: 2,
             detail: [
-                { point: 'wake my wife upWW' },
-                { point: 'check the weatherWW' },
-                { point: 'check the weatherWWW' },
+                { point: 'wake my wife upWW', pointMarked: false },
+                { point: 'check the weatherWW', pointMarked: false },
+                { point: 'check the weatherWWW', pointMarked: false },
 
             ]
         }

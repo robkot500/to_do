@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import Points from './Points'
+import alarm from './../assets/alarm.mp3'
+import Play from './Play'
 
 function Task(props) {
     console.log(props);
+
+
+
     const itemDetail = props.items.todos.filter(each => {
         return each.id === props.items.selectedItem.id
     })
@@ -19,26 +25,30 @@ function Task(props) {
             </div>
         )
     }
-    console.log(itemDetail);
+    console.log(details.detail);
     const alldetails = details.detail.map(each => {
         console.log(each);
         return (
-            <p key={each.point}>{each.point}</p>
+            <div>
+                <input className='point-check' id={each.point} type="checkbox" />
+                <label className='point-label' htmlFor={each.point}>{each.point}</label>
+            </div>
         )
     })
     return (
-        <div className='task-container'>
-            <div className='title'>
-                <div className='title-wrapper'>
-                    <input type="checkbox" id="todo" name="todo" value="todo" />
-                    <label htmlFor="todo" data-content={details.title}>{details.title}</label>
+        <>
+            <div className='task-container'>
+                <div className='title'>
+                    <div className='title-wrapper'>
+                        <input className='title-check' type="checkbox" id="todo" name="todo" value="todo" />
+                        <label className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
+                    </div>
+                    <i onClick={() => { clickDelete(details.id) }} className="fas fa-trash-alt"></i>
                 </div>
-                <i onClick={() => { clickDelete(details.id) }} className="fas fa-trash-alt"></i>
+                {alldetails}
             </div>
 
-            {alldetails}
-
-        </div>
+        </>
     )
 }
 const mapStateToProps = (state) => {
