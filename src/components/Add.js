@@ -5,11 +5,12 @@ function Add(props) {
     console.log(props);
     let newTask = {
         title: null,
+        titleMarked: false,
         id: null,
         detail: [
-            { point: null },
-            { point: null },
-            { point: null }
+            { point: null, pointMarked: false },
+            { point: null, pointMarked: false },
+            { point: null, pointMarked: false }
         ]
     }
 
@@ -20,18 +21,20 @@ function Add(props) {
             console.log(e.target.value);
             console.log(newTask.title);
         } if (e.target.id === 'pointOne') {
-            newTask.detail[0] = { point: e.target.value }
+            newTask.detail[0] = { point: e.target.value, pointMarked: false }
             console.log(e.target.value);
             console.log(newTask.detail);
         } if (e.target.id === 'pointTwo') {
-            newTask.detail[1] = { point: e.target.value }
+            newTask.detail[1] = { point: e.target.value, pointMarked: false }
         } if (e.target.id === 'pointThree') {
-            newTask.detail[2] = { point: e.target.value }
+            newTask.detail[2] = { point: e.target.value, pointMarked: true }
+
         }
         newTask.id = new Date().getTime()
-        console.log(newTask.detail);
-        // newTask = { ...newTask, [newTask.detail.point]: e.target.value }
+
+        // newTask = { ...newTask, [newTask.detail.point]: e.target.value, pointMarked: false }
     }
+    console.log(newTask);
     const handleSubmit = (e, id) => {
         e.preventDefault()
         props.addNewTask(newTask)

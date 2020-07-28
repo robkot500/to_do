@@ -5,16 +5,21 @@ import alarm from './../assets/alarm.mp3'
 import Play from './Play'
 
 function Task(props) {
-    console.log(props);
+    console.log(props)
 
 
 
-    const itemDetail = props.items.todos.filter(each => {
-        return each.id === props.items.selectedItem.id
-    })
     const clickDelete = (id) => {
         props.deleteItem(id)
     }
+    const handlePoint = (id) => {
+        console.log('asdddd', id)
+        props.pointCheck(id)
+    }
+    const itemDetail = props.items.todos.filter(each => {
+        return each.id === props.items.selectedItem.id
+    })
+
     const [details] = itemDetail
     if (itemDetail.length < 1) {
         return (
@@ -25,12 +30,14 @@ function Task(props) {
             </div>
         )
     }
-    console.log(details.detail);
     const alldetails = details.detail.map(each => {
-        console.log(each);
+        console.log(each.pointMarked);
+        const pointcheck = each.pointMarked === true ?
+            (<input onClick={(id) => { handlePoint(each.point) }} className='point-check' id={each.point} type="checkbox" checked />) :
+            (<input onClick={(id) => { handlePoint(each.point) }} className='point-check' id={each.point} type="checkbox" />)
         return (
             <div>
-                <input className='point-check' id={each.point} type="checkbox" />
+                {pointcheck}
                 <label className='point-label' htmlFor={each.point}>{each.point}</label>
             </div>
         )
@@ -58,7 +65,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteItem: (id) => { dispatch({ type: 'DELETE', id: id }) }
+        deleteItem: (id) => { dispatch({ type: 'DELETE', id: id }) },
+        pointCheck: (id) => { dispatch({ type: 'CHANGE_CHECK', id: id }) }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Task)
