@@ -84,7 +84,6 @@ const itemReducer = (state = initItem, action) => {
             //     return findTodo
             // })
             console.log(state.todos);
-            console.log(action);
             const todo = state.todos.find((todoItem) => {
                 return todoItem === action.id;
             })
