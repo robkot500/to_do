@@ -63,24 +63,40 @@ const itemReducer = (state = initItem, action) => {
                 selectedItem: { id: action.newTask.id },
             }
         case 'CHANGE_CHECK':
-            console.log(state.todos);
-            console.log(action.id)
-            const todos = state.todos.map(each => {
-                console.log(each.detail[0].pointMarked)
-                const points = each.detail.map(each => {
-                    console.log(each.pointMarked)
-                    if (action.id === each.point) {
-                        each.pointMarked === false ? (each.pointMarked = true) : (each.pointMarked = false)
-                    }
-                })
-
+            const todos = state.todos.map((todo) => {
+                return {
+                    ...todo, detail: todo.detail.map((each) => {
+                        console.log(each);
+                        if (action.id !== each.point) return each;
+                        return { ...each, pointMarked: !each.pointMarked }
+                    })
+                }
             })
             return {
                 ...state,
-
-            }
-
-
+                todos
+            };
+        case 'CHANGE_TITLE_TASK':
+            // function findTodo(todo) {
+            //     return todo = action.id
+            // }
+            // const todo = state.todos.find((findTodo) => {
+            //     return findTodo
+            // })
+            console.log(state.todos);
+            console.log(action);
+            const todo = state.todos.find((todoItem) => {
+                return todoItem === action.id;
+            })
+            const restTodos = state.todos.filter(each => {
+                return each != todo
+            })
+            console.log(restTodos);
+            console.log(todo);
+            return {
+                ...state,
+                todos: [...restTodos, { ...todo, titleMarked: !todo.titleMarked }]
+            };
     }
     return state
 }

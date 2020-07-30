@@ -16,6 +16,10 @@ function Task(props) {
         console.log('asdddd', id)
         props.pointCheck(id)
     }
+    const handleTitle = (id) => {
+        console.log(id);
+        props.titleCheckTask(id)
+    }
     const itemDetail = props.items.todos.filter(each => {
         return each.id === props.items.selectedItem.id
     })
@@ -36,10 +40,22 @@ function Task(props) {
             (<input onClick={(id) => { handlePoint(each.point) }} className='point-check' id={each.point} type="checkbox" checked />) :
             (<input onClick={(id) => { handlePoint(each.point) }} className='point-check' id={each.point} type="checkbox" />)
         return (
-            <div>
+            <div key={each.point}>
                 {pointcheck}
                 <label className='point-label' htmlFor={each.point}>{each.point}</label>
             </div>
+        )
+    })
+    const allTitles = itemDetail.map(each => {
+        console.log(each);
+        const titleCheck = each.titleMarked === true ?
+            (<input onClick={(id) => { handleTitle(each) }} className='title-check' id={each.title} type="checkbox" checked />) :
+            (<input onClick={(id) => { handleTitle(each) }} className='title-check' id={each.title} type="checkbox" />)
+        return (
+            <>
+                {titleCheck}
+                <label onClick={(id) => { handleTitle(each) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
+            </>
         )
     })
     return (
@@ -47,8 +63,9 @@ function Task(props) {
             <div className='task-container'>
                 <div className='title'>
                     <div className='title-wrapper'>
-                        <input className='title-check' type="checkbox" id="todo" name="todo" value="todo" />
-                        <label className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
+                        {/* <input className='title-check' type="checkbox" id="todo" name="todo" value="todo" />
+                        <label className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label> */}
+                        {allTitles}
                     </div>
                     <i onClick={() => { clickDelete(details.id) }} className="fas fa-trash-alt"></i>
                 </div>
@@ -66,7 +83,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         deleteItem: (id) => { dispatch({ type: 'DELETE', id: id }) },
-        pointCheck: (id) => { dispatch({ type: 'CHANGE_CHECK', id: id }) }
+        pointCheck: (id) => { dispatch({ type: 'CHANGE_CHECK', id: id }) },
+        titleCheckTask: (id) => { dispatch({ type: 'CHANGE_TITLE_TASK', id: id }) }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Task)
