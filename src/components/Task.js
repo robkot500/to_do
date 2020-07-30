@@ -45,29 +45,16 @@ function Task(props) {
             </div>
         )
     })
-<<<<<<< HEAD
     const allTitles = itemDetail.map(each => {
         console.log(each);
         const titleCheck = each.titleMarked === true ?
             (<input onClick={(id) => { handleTitle(each) }} className='title-check' id={each.title} type="checkbox" checked />) :
             (<input onClick={(id) => { handleTitle(each) }} className='title-check' id={each.title} type="checkbox" />)
         return (
-            <>
+            <div key={each.id}>
                 {titleCheck}
                 <label onClick={(id) => { handleTitle(each) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
-=======
-
-    const allTitles = itemDetail.map(each => {
-        console.log(each);
-        const titleCheck = each.titleMarked === true ?
-            (<input onClick={(id) => { handleTitle(each.title) }} className='title-check' id={each.title} type="checkbox" checked />) :
-            (<input onClick={(id) => { handleTitle(each.title) }} className='title-check' id={each.title} type="checkbox" />)
-        return (
-            <>
-                {titleCheck}
-                <label onClick={(id) => { handleTitle(each.title) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
->>>>>>> c1f7118fabd6a03e9a251743d0a890bfafc44462
-            </>
+            </div >
         )
     })
     return (
@@ -75,16 +62,9 @@ function Task(props) {
             <div className='task-container'>
                 <div className='title'>
                     <div className='title-wrapper'>
-<<<<<<< HEAD
                         {/* <input className='title-check' type="checkbox" id="todo" name="todo" value="todo" />
                         <label className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label> */}
                         {allTitles}
-=======
-                        {/* <input className='title-check' type="checkbox" id="todo" name="todo" value="todo" /> */}
-                        {allTitles}
-
-                        {/* <label onClick={(id) => { handleTitle(each.title) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label> */}
->>>>>>> c1f7118fabd6a03e9a251743d0a890bfafc44462
                     </div>
                     <i onClick={() => { clickDelete(details.id) }} className="fas fa-trash-alt"></i>
                 </div>

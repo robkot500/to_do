@@ -68,7 +68,12 @@ const itemReducer = (state = initItem, action) => {
                 todos
             };
         case 'CHANGE_TITLE_TASK':
-
+            // function findTodo(todo) {
+            //     return todo = action.id
+            // }
+            // const todo = state.todos.find((findTodo) => {
+            //     return findTodo
+            // })
             console.log(state.todos);
             const todo = state.todos.find((todoItem) => {
                 return todoItem === action.id;
@@ -81,6 +86,25 @@ const itemReducer = (state = initItem, action) => {
                 ...state,
                 todos: [...restTodos, { ...todo, titleMarked: !todo.titleMarked }]
             };
+        case 'CHANGE_TITLE_LIST':
+            console.log(action.id);
+            function findTodoList(todoList) {
+                return todoList = action.id
+            }
+            const todoList = state.todos.find((findTodoList) => {
+                return findTodoList
+            })
+            const restTodo = state.todos.filter(each => {
+                return each != todoList
+            })
+            console.log(todoList);
+            console.log(...state.todos);
+            console.log(state);
+            return {
+                ...state,
+                todos: [...restTodo, { ...todoList, titleMarked: !todoList.titleMarked }],
+            }
+
     }
     return state
 }
