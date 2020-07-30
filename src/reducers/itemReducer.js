@@ -91,7 +91,6 @@ const itemReducer = (state = initItem, action) => {
                 return each != todo
             })
             console.log(restTodos);
-            console.log(todo);
             return {
                 ...state,
                 todos: [...restTodos, { ...todo, titleMarked: !todo.titleMarked }]
