@@ -6,7 +6,7 @@ const initItem = {
             id: 1,
             detail: [
                 { point: 'wake my wife upGG', pointMarked: false },
-                { point: 'check the weatherGG', pointMarked: true },
+                { point: 'check the weatherGG', pointMarked: false },
                 { point: 'check the weatherGGG', pointMarked: false }
             ]
         },
@@ -15,16 +15,15 @@ const initItem = {
             titleMarked: false,
             id: 2,
             detail: [
-                { point: 'wake my wife upWW', pointMarked: true },
+                { point: 'wake my wife upWW', pointMarked: false },
                 { point: 'check the weatherWW', pointMarked: false },
-                // { point: 'check the weatherWWW', pointMarked: false },
-
             ]
         }
     ],
     selectedItem: {
         id: 1
-    }
+    },
+
 
 }
 
@@ -34,29 +33,21 @@ const itemReducer = (state = initItem, action) => {
 
     switch (action.type) {
         case 'DELETE':
-            console.log(action.id);
-            console.log(state.selectedItem.id);
-
             let newItems = state.todos.filter(item => {
                 return item.id != action.id
             })
-
-            console.log(state.selectedItem.id);
             return {
                 ...state,
                 todos: newItems,
                 selectedItem: newItems[0]
             }
         case 'DISPLAY_DETAIL':
-            console.log(action.id);
             return {
                 ...state,
                 selectedItem: { id: action.id }
 
             }
         case 'ADD_NEW_TASK':
-            console.log(action.newTask.id);
-            console.log(action.newTask);
             return {
                 ...state,
                 todos: [...state.todos, action.newTask],
@@ -77,12 +68,7 @@ const itemReducer = (state = initItem, action) => {
                 todos
             };
         case 'CHANGE_TITLE_TASK':
-            // function findTodo(todo) {
-            //     return todo = action.id
-            // }
-            // const todo = state.todos.find((findTodo) => {
-            //     return findTodo
-            // })
+
             console.log(state.todos);
             const todo = state.todos.find((todoItem) => {
                 return todoItem === action.id;

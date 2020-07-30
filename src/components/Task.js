@@ -5,15 +5,15 @@ import alarm from './../assets/alarm.mp3'
 import Play from './Play'
 
 function Task(props) {
-    console.log(props)
 
+    console.log(props);
 
 
     const clickDelete = (id) => {
         props.deleteItem(id)
     }
     const handlePoint = (id) => {
-        console.log('asdddd', id)
+
         props.pointCheck(id)
     }
     const handleTitle = (id) => {
@@ -35,7 +35,6 @@ function Task(props) {
         )
     }
     const alldetails = details.detail.map(each => {
-        console.log(each.pointMarked);
         const pointcheck = each.pointMarked === true ?
             (<input onClick={(id) => { handlePoint(each.point) }} className='point-check' id={each.point} type="checkbox" checked />) :
             (<input onClick={(id) => { handlePoint(each.point) }} className='point-check' id={each.point} type="checkbox" />)
@@ -46,6 +45,7 @@ function Task(props) {
             </div>
         )
     })
+<<<<<<< HEAD
     const allTitles = itemDetail.map(each => {
         console.log(each);
         const titleCheck = each.titleMarked === true ?
@@ -55,6 +55,18 @@ function Task(props) {
             <>
                 {titleCheck}
                 <label onClick={(id) => { handleTitle(each) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
+=======
+
+    const allTitles = itemDetail.map(each => {
+        console.log(each);
+        const titleCheck = each.titleMarked === true ?
+            (<input onClick={(id) => { handleTitle(each.title) }} className='title-check' id={each.title} type="checkbox" checked />) :
+            (<input onClick={(id) => { handleTitle(each.title) }} className='title-check' id={each.title} type="checkbox" />)
+        return (
+            <>
+                {titleCheck}
+                <label onClick={(id) => { handleTitle(each.title) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
+>>>>>>> c1f7118fabd6a03e9a251743d0a890bfafc44462
             </>
         )
     })
@@ -63,9 +75,16 @@ function Task(props) {
             <div className='task-container'>
                 <div className='title'>
                     <div className='title-wrapper'>
+<<<<<<< HEAD
                         {/* <input className='title-check' type="checkbox" id="todo" name="todo" value="todo" />
                         <label className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label> */}
                         {allTitles}
+=======
+                        {/* <input className='title-check' type="checkbox" id="todo" name="todo" value="todo" /> */}
+                        {allTitles}
+
+                        {/* <label onClick={(id) => { handleTitle(each.title) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label> */}
+>>>>>>> c1f7118fabd6a03e9a251743d0a890bfafc44462
                     </div>
                     <i onClick={() => { clickDelete(details.id) }} className="fas fa-trash-alt"></i>
                 </div>

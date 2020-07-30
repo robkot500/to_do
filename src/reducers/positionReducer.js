@@ -1,9 +1,9 @@
 const initState = {
-    position: "list"
+    position: "list",
+
 }
 
 const positionReducer = (state = initState, action) => {
-    console.log(action.id);
     switch (action.type) {
         case 'DISPLAY':
             return {
@@ -15,6 +15,7 @@ const positionReducer = (state = initState, action) => {
                 ...state,
                 position: action.task
             };
+
     }
     return state
 }
