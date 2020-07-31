@@ -70,8 +70,8 @@ function Task(props) {
                         {
                             itemDetail[0].titleMarked === true ?
                                 (console.log('11111111aaaaaa'),
-                                    <input onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-check' id={itemDetail[0].title} type="checkbox" checked />) :
-                                (console.log('111bbbbbbbb'), <input onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-check' id={itemDetail[0].title} type="checkbox" />)
+                                    <input onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-check' id={itemDetail[0].title} type="checkbox" checked={itemDetail[0].titleMarked} />) :
+                                (console.log('111bbbbbbbb'), <input onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-check' id={itemDetail[0].title} type="checkbox" checked={itemDetail[0].titleMarked} />)
                         }
                         <label onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
                         {/* {allTitles} */}

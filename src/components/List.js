@@ -31,8 +31,8 @@ function List(props) {
 
                         {
                             task.titleMarked === true ?
-                                (<input onClick={(id) => { handleTitle(task) }} className='title-check' id={task.title} type="checkbox" checked />) :
-                                (<input onClick={(id) => { handleTitle(task) }} className='title-check' id={task.title} type="checkbox" />)
+                                (<input onClick={(id) => { handleTitle(task) }} className='title-check' id={task.title} type="checkbox" checked={task.titleMarked} />) :
+                                (<input onClick={(id) => { handleTitle(task) }} className='title-check' id={task.title} type="checkbox" checked={task.titleMarked} />)
                         }
                         <label onClick={(id) => { handleTitle(task) }} className='title-label' htmlFor="todo" data-content={task.title}>{task.title}</label>
                     </div>
