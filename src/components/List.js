@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 function List(props) {
-    console.log(props.items.todos);
+    console.log(props.items.todos[0]);
     const sortItems = (a, b) => a.id - b.id;
     const sort = props.items.todos.sort(sortItems)
     console.log(sort);
@@ -17,23 +17,24 @@ function List(props) {
         }
         props.displayDetail(id)
     }
-    const handleTitle = (id) => {
-        console.log(id);
-        props.changeTitleList(id)
+    const handleTitle = (each) => {
+        console.log(each);
+        props.changeTitleList(each)
     }
-
     const display = props.items.todos.map(task => {
-        console.log(task.selected);
+
         return (
             <div key={task.id} className='item'>
                 <div className='title'>
                     <div className='title-wrapper'>
+                        {console.log(task.id)}
+
                         {
                             task.titleMarked === true ?
-                                (<input onClick={(id) => { handleTitle(task.id) }} className='title-check' id={task.title} type="checkbox" checked />) :
-                                (<input onClick={(id) => { handleTitle(task.id) }} className='title-check' id={task.title} type="checkbox" />)
+                                (<input onClick={(id) => { handleTitle(task) }} className='title-check' id={task.title} type="checkbox" checked />) :
+                                (<input onClick={(id) => { handleTitle(task) }} className='title-check' id={task.title} type="checkbox" />)
                         }
-                        <label onClick={(id) => { handleTitle(task.id) }} className='title-label' htmlFor="todo" data-content={task.title}>{task.title}</label>
+                        <label onClick={(id) => { handleTitle(task) }} className='title-label' htmlFor="todo" data-content={task.title}>{task.title}</label>
                     </div>
                     <i onClick={() => { clickDelete(task.id) }} className="fas fa-trash-alt"></i>
                 </div>
@@ -62,7 +63,7 @@ const mapDispatchToProps = (dispatch) => {
         deleteItem: (id) => { dispatch({ type: 'DELETE', id: id }) },
         displayTask: (task) => { dispatch({ type: 'DISPLAY_TASK', task: task }) },
         displayDetail: (id) => { dispatch({ type: 'DISPLAY_DETAIL', id: id }) },
-        changeTitleList: (id) => { dispatch({ type: 'CHANGE_TITLE_LIST', id: id }) }
+        changeTitleList: (each) => { dispatch({ type: 'CHANGE_TITLE_LIST', each: each }) }
     }
 }
 

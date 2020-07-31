@@ -16,9 +16,9 @@ function Task(props) {
 
         props.pointCheck(id)
     }
-    const handleTitle = (id) => {
-        console.log(id);
-        props.titleCheckTask(id)
+    const handleTitle = (each) => {
+        console.log(each);
+        props.titleCheckTask(each)
     }
     const itemDetail = props.items.todos.filter(each => {
         return each.id === props.items.selectedItem.id
@@ -51,10 +51,10 @@ function Task(props) {
             (<input onClick={(id) => { handleTitle(each) }} className='title-check' id={each.title} type="checkbox" checked />) :
             (<input onClick={(id) => { handleTitle(each) }} className='title-check' id={each.title} type="checkbox" />)
         return (
-            <div key={each.id}>
+            <>
                 {titleCheck}
                 <label onClick={(id) => { handleTitle(each) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
-            </div >
+            </>
         )
     })
     return (
@@ -83,7 +83,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         deleteItem: (id) => { dispatch({ type: 'DELETE', id: id }) },
         pointCheck: (id) => { dispatch({ type: 'CHANGE_CHECK', id: id }) },
-        titleCheckTask: (id) => { dispatch({ type: 'CHANGE_TITLE_TASK', id: id }) }
+        titleCheckTask: (each) => { dispatch({ type: 'CHANGE_TITLE_TASK', each: each }) }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Task)
