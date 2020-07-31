@@ -25,6 +25,8 @@ function Task(props) {
     })
 
     const [details] = itemDetail
+    console.log(itemDetail[0]);
+    console.log(itemDetail[0].titleMarked);
     if (itemDetail.length < 1) {
         return (
             <div className='title'>
@@ -48,6 +50,7 @@ function Task(props) {
     const allTitles = itemDetail.map(each => {
         console.log(each);
         const titleCheck = each.titleMarked === true ?
+
             (<input onClick={(id) => { handleTitle(each) }} className='title-check' id={each.title} type="checkbox" checked />) :
             (<input onClick={(id) => { handleTitle(each) }} className='title-check' id={each.title} type="checkbox" />)
         return (
@@ -64,7 +67,14 @@ function Task(props) {
                     <div className='title-wrapper'>
                         {/* <input className='title-check' type="checkbox" id="todo" name="todo" value="todo" />
                         <label className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label> */}
-                        {allTitles}
+                        {
+                            itemDetail[0].titleMarked === true ?
+                                (console.log('11111111aaaaaa'),
+                                    <input onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-check' id={itemDetail[0].title} type="checkbox" checked />) :
+                                (console.log('111bbbbbbbb'), <input onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-check' id={itemDetail[0].title} type="checkbox" />)
+                        }
+                        <label onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
+                        {/* {allTitles} */}
                     </div>
                     <i onClick={() => { clickDelete(details.id) }} className="fas fa-trash-alt"></i>
                 </div>
