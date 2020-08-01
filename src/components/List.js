@@ -21,19 +21,22 @@ function List(props) {
         console.log(each);
         props.changeTitleList(each)
     }
+    if (props.items.todos.length < 1) {
+        return (
+            <div className='title'>
+                <div className='title-wrapper'>
+                    <p>You have no todos left</p>
+                </div>
+            </div>
+        )
+    }
     const display = props.items.todos.map(task => {
 
         return (
             <div key={task.id} className='item'>
                 <div className='title'>
                     <div className='title-wrapper'>
-                        {console.log(task.id)}
-
-                        {
-                            task.titleMarked === true ?
-                                (<input onClick={(id) => { handleTitle(task) }} className='title-check' id={task.title} type="checkbox" checked={task.titleMarked} />) :
-                                (<input onClick={(id) => { handleTitle(task) }} className='title-check' id={task.title} type="checkbox" checked={task.titleMarked} />)
-                        }
+                        <input onClick={(id) => { handleTitle(task) }} className='title-check' id={task.title} type="checkbox" checked={task.titleMarked} />
                         <label onClick={(id) => { handleTitle(task) }} className='title-label' htmlFor="todo" data-content={task.title}>{task.title}</label>
                     </div>
                     <i onClick={() => { clickDelete(task.id) }} className="fas fa-trash-alt"></i>

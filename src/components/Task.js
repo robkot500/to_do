@@ -4,16 +4,20 @@ import Points from './Points'
 import alarm from './../assets/alarm.mp3'
 import Play from './Play'
 
+
+
 function Task(props) {
 
+    console.log(props.setDate);
     console.log(props);
+
+
 
 
     const clickDelete = (id) => {
         props.deleteItem(id)
     }
     const handlePoint = (id) => {
-
         props.pointCheck(id)
     }
     const handleTitle = (each) => {
@@ -23,10 +27,11 @@ function Task(props) {
     const itemDetail = props.items.todos.filter(each => {
         return each.id === props.items.selectedItem.id
     })
-
+    // var countDownDate = "Thu Sep 03 2020 00:00:00 GMT+0200 (czas środkowoeuropejski letni)"
+    // console.log(countDownDate.toLocaleTimeString);
+    const newD = new Date().getTime
+    console.log(newD);
     const [details] = itemDetail
-    console.log(itemDetail[0]);
-    console.log(itemDetail[0].titleMarked);
     if (itemDetail.length < 1) {
         return (
             <div className='title'>
@@ -37,56 +42,42 @@ function Task(props) {
         )
     }
     const alldetails = details.detail.map(each => {
-        const pointcheck = each.pointMarked === true ?
-            (<input onClick={(id) => { handlePoint(each.point) }} className='point-check' id={each.point} type="checkbox" checked />) :
-            (<input onClick={(id) => { handlePoint(each.point) }} className='point-check' id={each.point} type="checkbox" />)
-        return (
-            <div key={each.point}>
-                {pointcheck}
-                <label className='point-label' htmlFor={each.point}>{each.point}</label>
-            </div>
-        )
+        if (each.point != null)
+            return (
+                <div key={each.point}>
+                    <input onClick={(id) => { handlePoint(each.point) }} className='point-check' id={each.point} type="checkbox" checked={each.pointMarked} />
+                    <label className='point-label' htmlFor={each.point}>{each.point}</label>
+                </div>
+            )
     })
-    const allTitles = itemDetail.map(each => {
-        console.log(each);
-        const titleCheck = each.titleMarked === true ?
 
-            (<input onClick={(id) => { handleTitle(each) }} className='title-check' id={each.title} type="checkbox" checked />) :
-            (<input onClick={(id) => { handleTitle(each) }} className='title-check' id={each.title} type="checkbox" />)
-        return (
-            <>
-                {titleCheck}
-                <label onClick={(id) => { handleTitle(each) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
-            </>
-        )
-    })
     return (
         <>
             <div className='task-container'>
                 <div className='title'>
                     <div className='title-wrapper'>
-                        {/* <input className='title-check' type="checkbox" id="todo" name="todo" value="todo" />
-                        <label className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label> */}
-                        {
-                            itemDetail[0].titleMarked === true ?
-                                (console.log('11111111aaaaaa'),
-                                    <input onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-check' id={itemDetail[0].title} type="checkbox" checked={itemDetail[0].titleMarked} />) :
-                                (console.log('111bbbbbbbb'), <input onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-check' id={itemDetail[0].title} type="checkbox" checked={itemDetail[0].titleMarked} />)
-                        }
+                        <input onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-check' id={itemDetail[0].title} type="checkbox" checked={itemDetail[0].titleMarked} />
                         <label onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
-                        {/* {allTitles} */}
                     </div>
                     <i onClick={() => { clickDelete(details.id) }} className="fas fa-trash-alt"></i>
                 </div>
                 {alldetails}
+                <div>{props.setDate != null ? (props.setDate.toLocaleString()) : (new Date().toLocaleString)}</div>
+                <div>{props.setDate.toLocaleTimeString()}</div>
+                <div>{props.setDate.toLocaleDateString()}</div>
+
+
+
             </div>
 
         </>
     )
 }
 const mapStateToProps = (state) => {
+    console.log(state.position.date);
     return {
-        items: state.item
+        items: state.item,
+        setDate: state.position.date
     }
 }
 const mapDispatchToProps = (dispatch) => {

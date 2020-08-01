@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Alarm from './Alarm'
 
 function Add(props) {
     console.log(props);
@@ -27,7 +28,7 @@ function Add(props) {
         } if (e.target.id === 'pointTwo') {
             newTask.detail[1] = { point: e.target.value, pointMarked: false }
         } if (e.target.id === 'pointThree') {
-            newTask.detail[2] = { point: e.target.value, pointMarked: true }
+            newTask.detail[2] = { point: e.target.value, pointMarked: false }
 
         }
         newTask.id = new Date().getTime()
@@ -57,6 +58,7 @@ function Add(props) {
                 <label htmlFor="text">point three</label>
                 <button>ADD</button>
             </form >
+            <Alarm />
         </>
     )
 }

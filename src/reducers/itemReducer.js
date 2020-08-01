@@ -4,6 +4,7 @@ const initItem = {
             title: 'Get out of bed',
             titleMarked: false,
             id: 1,
+
             detail: [
                 { point: 'wake my wife upGG', pointMarked: false },
                 { point: 'check the weatherGG', pointMarked: false },
@@ -105,7 +106,15 @@ const itemReducer = (state = initItem, action) => {
                 todos: [...restTodo, { ...todoList, titleMarked: !todoList.titleMarked }],
 
             }
+        case 'ADD_SET_DATE':
+            console.log(state);
+            console.log(action);
+            return {
+                ...state,
+                date: action.setDate
 
+
+            };
     }
     return state
 }
