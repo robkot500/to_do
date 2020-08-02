@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import Alarm from './Alarm'
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css";
 
 function Add(props) {
     console.log(props);
+    const [startDate, setStartDate] = useState(new Date());
     let newTask = {
         title: null,
         titleMarked: false,
         id: null,
+        date: startDate,
         detail: [
             { point: null, pointMarked: false },
             { point: null, pointMarked: false },
@@ -44,7 +47,12 @@ function Add(props) {
         props.display('task')
 
     }
-
+    const handleDate = (date) => {
+        // console.log(date.toLocalString())
+        // setStartDate(date)
+        props.addSetDate(date)
+        return date
+    }
     return (
         <>
             <form onSubmit={handleSubmit} type='submit'>
@@ -56,9 +64,22 @@ function Add(props) {
                 <label htmlFor="text">point two</label>
                 <input onChange={handleChange} placeholder='optional' id='pointThree' type="text" />
                 <label htmlFor="text">point three</label>
+                <DatePicker
+                    // selected={new Date()}
+                    selected={startDate}
+
+                    // onChange={date => setStartDate(date)}
+                    onChange={date => handleDate(date),
+                        date => setStartDate(date)
+                    }
+                    timeInputLabel="Time:"
+                    dateFormat="MM/dd/yyyy h:mm aa"
+                    showTimeInput
+                    placeholderText="Click to select a date"
+                />
                 <button>ADD</button>
             </form >
-            <Alarm />
+            {/* <Alarm /> */}
         </>
     )
 }

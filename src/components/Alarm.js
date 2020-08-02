@@ -4,8 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Alarm(props) {
-    console.log(props)
-    // const [startDate, setStartDate] = useState(null);
+    const [startDate, setStartDate] = useState(new Date());
 
     const handleChange = (date) => {
         // console.log(date.toLocalString())
@@ -18,10 +17,12 @@ function Alarm(props) {
             <div>Podaj datę</div>
             <DatePicker
                 // selected={new Date()}
-                selected={props.setDate}
+                selected={startDate}
 
                 // onChange={date => setStartDate(date)}
-                onChange={date => handleChange(date)}
+                onChange={date => handleChange(date),
+                    date => setStartDate(date)
+                }
                 timeInputLabel="Time:"
                 dateFormat="MM/dd/yyyy h:mm aa"
                 showTimeInput
@@ -32,12 +33,13 @@ function Alarm(props) {
     );
 }
 const mapStateToProps = (state) => {
-    console.log(state.position.date)
+    console.log(state.item.todos)
+    console.log(state);
     return { setDate: state.position.date }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        addSetDate: (setDate) => { dispatch({ type: 'ADD_SET_DATE', setDate: setDate }) }
+        addSetDate: (date) => { dispatch({ type: 'ADD_SET_DATE', date: date }) }
 
     }
 }

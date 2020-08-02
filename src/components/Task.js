@@ -27,10 +27,7 @@ function Task(props) {
     const itemDetail = props.items.todos.filter(each => {
         return each.id === props.items.selectedItem.id
     })
-    // var countDownDate = "Thu Sep 03 2020 00:00:00 GMT+0200 (czas środkowoeuropejski letni)"
-    // console.log(countDownDate.toLocaleTimeString);
-    const newD = new Date().getTime
-    console.log(newD);
+
     const [details] = itemDetail
     if (itemDetail.length < 1) {
         return (
@@ -62,9 +59,12 @@ function Task(props) {
                     <i onClick={() => { clickDelete(details.id) }} className="fas fa-trash-alt"></i>
                 </div>
                 {alldetails}
-                <div>{props.setDate != null ? (props.setDate.toLocaleString()) : (new Date().toLocaleString)}</div>
-                <div>{props.setDate.toLocaleTimeString()}</div>
-                <div>{props.setDate.toLocaleDateString()}</div>
+                {/* <div>{props.setDate != null ? (props.setDate.toLocaleString()) : (new Date().toLocaleString)}</div> */}
+                {/* <div>{
+                    console.log(itemDetail[0].date),
+                    itemDetail[0].date.toLocaleString()}</div> */}
+                <div>{itemDetail[0].date.toLocaleDateString()}</div>
+                <div>{itemDetail[0].date.toLocaleTimeString()}</div>
 
 
 
