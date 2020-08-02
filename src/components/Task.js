@@ -27,6 +27,11 @@ function Task(props) {
     const itemDetail = props.items.todos.filter(each => {
         return each.id === props.items.selectedItem.id
     })
+    const clickEdit = (item, id) => {
+        console.log(props.items.todos);
+        console.log(item, id);
+        props.display(item, id)
+    }
 
     const [details] = itemDetail
     if (itemDetail.length < 1) {
@@ -38,6 +43,7 @@ function Task(props) {
             </div>
         )
     }
+    console.log(itemDetail[0].date);
     const alldetails = details.detail.map(each => {
         if (each.point != null)
             return (
@@ -59,12 +65,10 @@ function Task(props) {
                     <i onClick={() => { clickDelete(details.id) }} className="fas fa-trash-alt"></i>
                 </div>
                 {alldetails}
-                {/* <div>{props.setDate != null ? (props.setDate.toLocaleString()) : (new Date().toLocaleString)}</div> */}
-                {/* <div>{
-                    console.log(itemDetail[0].date),
-                    itemDetail[0].date.toLocaleString()}</div> */}
-                <div>{itemDetail[0].date.toLocaleDateString()}</div>
-                <div>{itemDetail[0].date.toLocaleTimeString()}</div>
+                <div>{itemDetail[0].date != null ? (itemDetail[0].date.toLocaleDateString()) : (null)}</div>
+                {/* <div>{itemDetail[0].date.toLocaleDateString()}</div>
+                <div>{itemDetail[0].date.toLocaleTimeString()}</div> */}
+                <button onClick={() => { clickEdit(itemDetail[0].id, 'add') }}>EDIT</button>
 
 
 
@@ -84,7 +88,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         deleteItem: (id) => { dispatch({ type: 'DELETE', id: id }) },
         pointCheck: (id) => { dispatch({ type: 'CHANGE_CHECK', id: id }) },
-        titleCheckTask: (each) => { dispatch({ type: 'CHANGE_TITLE_TASK', each: each }) }
+        titleCheckTask: (each) => { dispatch({ type: 'CHANGE_TITLE_TASK', each: each }) },
+        display: (task, id) => { dispatch({ type: 'DISPLAY', task: task, id: id }) }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Task)

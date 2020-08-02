@@ -5,53 +5,44 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function Add(props) {
     console.log(props);
-    const [startDate, setStartDate] = useState(new Date());
-    let newTask = {
+    const [startDate, setStartDate] = useState(null);
+    const [newTask, setNewTask] = useState({
         title: null,
         titleMarked: false,
         id: null,
-        date: startDate,
+        date: null,
         detail: [
             { point: null, pointMarked: false },
             { point: null, pointMarked: false },
             { point: null, pointMarked: false }
         ]
-    }
+    })
 
-    console.log(newTask);
     const handleChange = (e) => {
         if (e.target.id === 'newTask') {
             newTask.title = e.target.value
-            console.log(e.target.value);
-            console.log(newTask.title);
         } if (e.target.id === 'pointOne') {
             newTask.detail[0] = { point: e.target.value, pointMarked: false }
-            console.log(e.target.value);
-            console.log(newTask.detail);
         } if (e.target.id === 'pointTwo') {
             newTask.detail[1] = { point: e.target.value, pointMarked: false }
         } if (e.target.id === 'pointThree') {
             newTask.detail[2] = { point: e.target.value, pointMarked: false }
-
         }
         newTask.id = new Date().getTime()
 
-        // newTask = { ...newTask, [newTask.detail.point]: e.target.value, pointMarked: false }
     }
-    console.log(newTask);
+
     const handleSubmit = (e, id) => {
         e.preventDefault()
+        newTask.date = startDate
         props.addNewTask(newTask)
-        console.log(newTask.id);
         props.displayDetail(newTask.id)
         props.display('task')
+        console.log(startDate);
 
     }
     const handleDate = (date) => {
-        // console.log(date.toLocalString())
-        // setStartDate(date)
-        props.addSetDate(date)
-        return date
+        setStartDate(date)
     }
     return (
         <>
@@ -65,13 +56,8 @@ function Add(props) {
                 <input onChange={handleChange} placeholder='optional' id='pointThree' type="text" />
                 <label htmlFor="text">point three</label>
                 <DatePicker
-                    // selected={new Date()}
                     selected={startDate}
-
-                    // onChange={date => setStartDate(date)}
-                    onChange={date => handleDate(date),
-                        date => setStartDate(date)
-                    }
+                    onChange={date => handleDate(date)}
                     timeInputLabel="Time:"
                     dateFormat="MM/dd/yyyy h:mm aa"
                     showTimeInput
@@ -79,12 +65,10 @@ function Add(props) {
                 />
                 <button>ADD</button>
             </form >
-            {/* <Alarm /> */}
         </>
     )
 }
 const mapStateToProps = (addNewTask) => {
-
     return {
         add: addNewTask
     }

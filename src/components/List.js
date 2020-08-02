@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 function List(props) {
-    console.log(props.items.todos[0]);
+    console.log(props);
     const sortItems = (a, b) => a.id - b.id;
     const sort = props.items.todos.sort(sortItems)
     console.log(sort);
@@ -11,14 +11,12 @@ function List(props) {
         props.deleteItem(id)
     }
     const clickDetail = (item, id) => {
-        console.log('aaaa', id);
         if (item === 'task') {
             props.displayTask(item);
         }
         props.displayDetail(id)
     }
     const handleTitle = (each) => {
-        console.log(each);
         props.changeTitleList(each)
     }
     if (props.items.todos.length < 1) {

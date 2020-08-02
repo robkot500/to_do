@@ -107,15 +107,15 @@ const itemReducer = (state = initItem, action) => {
                 todos: [...restTodo, { ...todoList, titleMarked: !todoList.titleMarked }],
 
             }
-        case 'ADD_SET_DATE':
-            console.log(state.todos);
-            console.log(action);
-            return {
-                ...state,
-                date: action.setDate
+        // case 'ADD_SET_DATE':
+        //     console.log(state.todos);
+        //     console.log(action);
+        //     return {
+        //         ...state,
+        //         date: action.setDate
 
 
-            };
+        //     };
     }
     return state
 }
