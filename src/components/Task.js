@@ -31,6 +31,7 @@ function Task(props) {
         console.log(props.items.todos);
         console.log(item, id);
         props.display(item, id)
+        props.editTask(item)
     }
 
     const [details] = itemDetail
@@ -89,7 +90,8 @@ const mapDispatchToProps = (dispatch) => {
         deleteItem: (id) => { dispatch({ type: 'DELETE', id: id }) },
         pointCheck: (id) => { dispatch({ type: 'CHANGE_CHECK', id: id }) },
         titleCheckTask: (each) => { dispatch({ type: 'CHANGE_TITLE_TASK', each: each }) },
-        display: (task, id) => { dispatch({ type: 'DISPLAY', task: task, id: id }) }
+        display: (task, id) => { dispatch({ type: 'DISPLAY', task: task, id: id }) },
+        editTask: (id) => { dispatch({ type: 'EDIT_TASK', id: id }) }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Task)

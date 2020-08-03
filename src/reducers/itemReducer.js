@@ -5,6 +5,7 @@ const initItem = {
             titleMarked: false,
             id: 1,
             date: new Date(2021, 11, 24, 10, 33),
+            edit: false,
             detail: [
                 { point: 'wake my wife upGG', pointMarked: false },
                 { point: 'check the weatherGG', pointMarked: false },
@@ -16,6 +17,7 @@ const initItem = {
             titleMarked: false,
             id: 2,
             date: new Date(2022, 11, 24, 10, 33),
+            edit: false,
             detail: [
                 { point: 'wake my wife upWW', pointMarked: false },
                 { point: 'check the weatherWW', pointMarked: false },
@@ -107,14 +109,27 @@ const itemReducer = (state = initItem, action) => {
                 todos: [...restTodo, { ...todoList, titleMarked: !todoList.titleMarked }],
 
             }
-        // case 'ADD_SET_DATE':
+
+        case 'EDIT_TASK':
+            console.log(state.todos);
+            console.log(action.id);
+            const toEdit = state.todos.filter(each => {
+                return each.id === action.id
+            })
+            const toNotEdit = state.todos.filter(each => {
+                return each.id != action.id
+            })
+            toEdit[0].edit = !toEdit[0].edit
+            console.log(toEdit);
+            return {
+                ...state,
+                todos: [...toNotEdit, toEdit[0]]
+            };
+        // case 'CHANGE_DETAIL':
         //     console.log(state.todos);
         //     console.log(action);
         //     return {
         //         ...state,
-        //         date: action.setDate
-
-
         //     };
     }
     return state
