@@ -135,12 +135,6 @@ const itemReducer = (state = initItem, action) => {
                 ...state,
                 todos: editNot
             };
-        // case 'CHANGE_DETAIL':
-        //     console.log(state.todos);
-        //     console.log(action);
-        //     return {
-        //         ...state,
-        //     };
     }
     return state
 }

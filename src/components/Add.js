@@ -6,10 +6,12 @@ import "react-datepicker/dist/react-datepicker.css";
 function Add(props) {
     console.log(props);
     console.log(props.add.item.todos);
-    const [startDate, setStartDate] = useState(null);
+    const toEdit = props.add.item.todos.filter(each => {
+        return each.edit === true
+    })
 
-    let n = 5;
-    const [newTask, setNewTask] = useState({
+    console.log(toEdit);
+    const bbb = {
         title: null,
         titleMarked: false,
         id: null,
@@ -19,7 +21,16 @@ function Add(props) {
             { point: null, pointMarked: false },
             { point: null, pointMarked: false }
         ]
-    })
+    }
+
+    const [startDate, setStartDate] = useState(null);
+    const [newTask, setNewTask] = useState(
+        toEdit.length > 0 ? (
+            console.log('bbb'),
+            toEdit[0]
+
+        ) : (bbb)
+    )
     const filterToEdit = props.add.item.todos.filter(each => {
         return each.edit != false
     })
@@ -29,11 +40,10 @@ function Add(props) {
         e.target.value = null
         // props.changeDetail(id)
     }
-    console.log(n);
     const handleChange = (e) => {
-        console.log('loop111111');
         if (e.target.id === 'newTask') {
             newTask.title = e.target.value
+            console.log(newTask.title);
         } if (e.target.id === 'pointOne') {
             newTask.detail[0] = { point: e.target.value, pointMarked: false }
         } if (e.target.id === 'pointTwo') {
@@ -44,7 +54,14 @@ function Add(props) {
         newTask.id = new Date().getTime()
 
     }
-    console.log(newTask.id);
+
+    console.log(toEdit);
+    // const handleValue = () => {
+    //     console.log('ggggggggggggggggggggggggggggggg', filterToEdit[0].title);
+    //     newTask.title = filterToEdit[0].title
+    // }
+
+
 
     const handleSubmit = (e, id) => {
         e.preventDefault()
@@ -52,15 +69,19 @@ function Add(props) {
         props.addNewTask(newTask)
         props.displayDetail(newTask.id)
         props.display('task')
+        console.log(newTask);
 
+        // props.add.item.todos.find(toEdit=>{
+        //     return toEdit = toEdit.
+        // })
     }
     const handleDate = (date) => {
         setStartDate(date)
     }
-    const itemDetailEdit = props.add.item.todos.filter(each => {
-        console.log(each);
-        // return each.id === props.items.selectedItem.id
-    })
+    // const itemDetailEdit = props.add.item.todos.filter(each => {
+    //     console.log(each);
+    //     // return each.id === props.items.selectedItem.id
+    // })
 
     return (
         <>

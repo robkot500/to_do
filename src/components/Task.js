@@ -38,8 +38,6 @@ function Task(props) {
     }, []);
 
     const clickEdit = (item, id) => {
-        console.log(props.items.todos);
-        console.log(item, id);
         props.display(item, id)
         props.editTask(item)
     }
@@ -77,8 +75,6 @@ function Task(props) {
                 </div>
                 {alldetails}
                 <div>{itemDetail[0].date != null ? (itemDetail[0].date.toLocaleDateString()) : (null)}</div>
-                {/* <div>{itemDetail[0].date.toLocaleDateString()}</div>
-                <div>{itemDetail[0].date.toLocaleTimeString()}</div> */}
                 <button onClick={() => { clickEdit(itemDetail[0].id, 'add') }}>EDIT</button>
 
 
