@@ -4,8 +4,8 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 
 function Add(props) {
-    console.log(props.add.item.todos[0].edit);
     console.log(props);
+    console.log(props.add.item.todos);
     const [startDate, setStartDate] = useState(null);
 
     let n = 5;
@@ -23,7 +23,7 @@ function Add(props) {
     const filterToEdit = props.add.item.todos.filter(each => {
         return each.edit != false
     })
-    console.log(filterToEdit.length);
+    console.log(filterToEdit.date);
 
     const mouseEnter = (e) => {
         e.target.value = null
@@ -52,7 +52,6 @@ function Add(props) {
         props.addNewTask(newTask)
         props.displayDetail(newTask.id)
         props.display('task')
-        console.log(startDate);
 
     }
     const handleDate = (date) => {
@@ -66,13 +65,21 @@ function Add(props) {
     return (
         <>
             <form onSubmit={handleSubmit} type='submit'>
-                <input onChange={handleChange} onMouseDown={mouseEnter} onfocus="value=''" value={filterToEdit.length < 1 ? (newTask.title) : (filterToEdit[0].title)} id='newTask' type="text" />
+                <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
+                    value={filterToEdit.length < 1 ? (null) : (filterToEdit[0].title)}
+                    id='newTask' type="text" />
                 <label htmlFor="text">new task</label>
-                <input onChange={handleChange} onMouseDown={mouseEnter} value={filterToEdit.length < 1 ? (newTask.detail[0]) : (filterToEdit[0].detail[0].point)} placeholder='optional' id='pointOne' type="text" />
+                <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
+                    value={filterToEdit.length < 1 ? (null) : (filterToEdit[0].detail[0] ? (filterToEdit[0].detail[0].point) : (null))}
+                    placeholder='optional' id='pointOne' type="text" />
                 <label htmlFor="text">point one</label>
-                <input onChange={handleChange} onMouseDown={mouseEnter} value={filterToEdit.length < 1 ? (newTask.detail[0]) : (filterToEdit[0].detail[1].point)} placeholder='optional' id='pointTwo' type="text" />
+                <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
+                    value={filterToEdit.length < 1 ? (null) : (filterToEdit[0].detail[1] ? (filterToEdit[0].detail[1].point) : (null))}
+                    placeholder='optional' id='pointTwo' type="text" />
                 <label htmlFor="text">point two</label>
-                <input onChange={handleChange} onMouseDown={mouseEnter} value={filterToEdit.length < 1 ? (newTask.detail[0]) : (filterToEdit[0].detail[2].point)} placeholder='optional' id='pointThree' type="text" />
+                <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
+                    value={filterToEdit.length < 1 ? (null) : (filterToEdit[0].detail[2] ? (filterToEdit[0].detail[2].point) : (null))}
+                    placeholder='optional' id='pointThree' type="text" />
                 <label htmlFor="text">point three</label>
                 <DatePicker
                     selected={startDate}
@@ -88,9 +95,10 @@ function Add(props) {
         </>
     )
 }
-const mapStateToProps = (addNewTask) => {
+const mapStateToProps = (addNewTask, state) => {
     return {
-        add: addNewTask
+        add: addNewTask,
+        position: state.position
     }
 }
 const mapDispatchToProps = (dispatch) => {

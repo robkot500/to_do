@@ -57,6 +57,7 @@ const mapStateToProps = (state, deleteItem) => {
 
     return {
         items: state.item,
+        position: state.position
     }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -61,7 +61,6 @@ const itemReducer = (state = initItem, action) => {
             const todos = state.todos.map((todo) => {
                 return {
                     ...todo, detail: todo.detail.map((each) => {
-                        console.log(each);
                         if (action.id !== each.point) return each;
                         return { ...each, pointMarked: !each.pointMarked }
                     })
@@ -124,6 +123,17 @@ const itemReducer = (state = initItem, action) => {
             return {
                 ...state,
                 todos: [...toNotEdit, toEdit[0]]
+            };
+        case 'EDIT_TASK_STATE':
+            console.log(state.todos);
+            console.log(action.task);
+            const editNot = state.todos.map((each) => {
+                return { ...each, edit: false }
+            });
+            console.log(editNot);
+            return {
+                ...state,
+                todos: editNot
             };
         // case 'CHANGE_DETAIL':
         //     console.log(state.todos);

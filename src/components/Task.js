@@ -8,7 +8,7 @@ import Play from './Play'
 
 function Task(props) {
 
-    console.log(props.setDate);
+
     console.log(props);
 
 
@@ -27,6 +27,16 @@ function Task(props) {
     const itemDetail = props.items.todos.filter(each => {
         return each.id === props.items.selectedItem.id
     })
+    const editTrue = props.items.todos.filter(each => {
+        return each.edit === true
+    })
+    const editBack = () => {
+        props.editTaskState()
+    }
+    useEffect(() => {
+        editBack()
+    }, []);
+
     const clickEdit = (item, id) => {
         console.log(props.items.todos);
         console.log(item, id);
@@ -79,10 +89,11 @@ function Task(props) {
     )
 }
 const mapStateToProps = (state) => {
-    console.log(state.position.date);
+    console.log(state);
     return {
         items: state.item,
-        setDate: state.position.date
+        // setDate: state.position.date,
+        position: state.position
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -91,7 +102,8 @@ const mapDispatchToProps = (dispatch) => {
         pointCheck: (id) => { dispatch({ type: 'CHANGE_CHECK', id: id }) },
         titleCheckTask: (each) => { dispatch({ type: 'CHANGE_TITLE_TASK', each: each }) },
         display: (task, id) => { dispatch({ type: 'DISPLAY', task: task, id: id }) },
-        editTask: (id) => { dispatch({ type: 'EDIT_TASK', id: id }) }
+        editTask: (id) => { dispatch({ type: 'EDIT_TASK', id: id }) },
+        editTaskState: () => { dispatch({ type: 'EDIT_TASK_STATE' }) },
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Task)

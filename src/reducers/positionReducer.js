@@ -10,6 +10,7 @@ const positionReducer = (state = initState, action) => {
     switch (action.type) {
         case 'DISPLAY':
             console.log(action);
+            console.log(state);
             return {
                 ...state,
                 position: action.id
