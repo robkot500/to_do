@@ -28,17 +28,17 @@ function Add(props) {
         toEdit.length > 0 ? (
             console.log('bbb'),
             toEdit[0]
-
         ) : (bbb)
     )
-    const filterToEdit = props.add.item.todos.filter(each => {
-        return each.edit != false
-    })
-    console.log(filterToEdit.date);
+    console.log(newTask.title);
 
     const mouseEnter = (e) => {
-        e.target.value = null
-        // props.changeDetail(id)
+        setNewTask({ newTask, title: null })
+
+    }
+    const mouseLeave = (e) => {
+
+        setNewTask({ newTask, title: e.target.value })
     }
     const handleChange = (e) => {
         if (e.target.id === 'newTask') {
@@ -55,57 +55,50 @@ function Add(props) {
 
     }
 
-    console.log(toEdit);
-    // const handleValue = () => {
-    //     console.log('ggggggggggggggggggggggggggggggg', filterToEdit[0].title);
-    //     newTask.title = filterToEdit[0].title
-    // }
-
 
 
     const handleSubmit = (e, id) => {
         e.preventDefault()
         newTask.date = startDate
-        props.addNewTask(newTask)
         props.displayDetail(newTask.id)
         props.display('task')
         console.log(newTask);
+        toEdit.length > 0 ? (
+            console.log('bbb')
 
-        // props.add.item.todos.find(toEdit=>{
-        //     return toEdit = toEdit.
-        // })
+        ) : (
+                props.addNewTask(newTask)
+            )
+
+
     }
     const handleDate = (date) => {
         setStartDate(date)
     }
-    // const itemDetailEdit = props.add.item.todos.filter(each => {
-    //     console.log(each);
-    //     // return each.id === props.items.selectedItem.id
-    // })
+
 
     return (
         <>
             <form onSubmit={handleSubmit} type='submit'>
-                <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
-                    value={filterToEdit.length < 1 ? (null) : (filterToEdit[0].title)}
+                <input onChange={handleChange} onMouseDown={mouseEnter} onMouseLeave={mouseLeave}
+                    value={toEdit.length < 1 ? (null) : (console.log(newTask.title), newTask.title)}
                     id='newTask' type="text" />
                 <label htmlFor="text">new task</label>
                 <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
-                    value={filterToEdit.length < 1 ? (null) : (filterToEdit[0].detail[0] ? (filterToEdit[0].detail[0].point) : (null))}
+                    value={toEdit.length < 1 ? (null) : (toEdit[0].detail[0] ? (toEdit[0].detail[0].point) : (null))}
                     placeholder='optional' id='pointOne' type="text" />
                 <label htmlFor="text">point one</label>
                 <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
-                    value={filterToEdit.length < 1 ? (null) : (filterToEdit[0].detail[1] ? (filterToEdit[0].detail[1].point) : (null))}
+                    value={toEdit.length < 1 ? (null) : (toEdit[0].detail[1] ? (toEdit[0].detail[1].point) : (null))}
                     placeholder='optional' id='pointTwo' type="text" />
                 <label htmlFor="text">point two</label>
                 <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
-                    value={filterToEdit.length < 1 ? (null) : (filterToEdit[0].detail[2] ? (filterToEdit[0].detail[2].point) : (null))}
+                    value={toEdit.length < 1 ? (null) : (toEdit[0].detail[2] ? (toEdit[0].detail[2].point) : (null))}
                     placeholder='optional' id='pointThree' type="text" />
                 <label htmlFor="text">point three</label>
                 <DatePicker
                     selected={startDate}
                     onChange={date => handleDate(date)}
-                    // onMouseDown={mouseEnter}
                     timeInputLabel="Time:"
                     dateFormat="MM/dd/yyyy h:mm aa"
                     showTimeInput
@@ -127,7 +120,6 @@ const mapDispatchToProps = (dispatch) => {
         addNewTask: (newTask) => { dispatch({ type: 'ADD_NEW_TASK', newTask: newTask }) },
         displayDetail: (id) => { dispatch({ type: 'DISPLAY_DETAIL', id: id }) },
         display: (id) => { dispatch({ type: 'DISPLAY', id: id }) },
-        // changeDetail: (id) => { dispatch({ type: 'CHANGE_DETAIL', id: id }) }
     }
 }
 
