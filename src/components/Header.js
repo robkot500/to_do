@@ -12,6 +12,8 @@ function Header(props) {
             props.display(e.target.id)
         } if (e.target.id === 'add') {
             props.display(e.target.id)
+        } if (e.target.id === 'edit') {
+            props.display(e.target.id)
         }
     }
 
@@ -23,6 +25,8 @@ function Header(props) {
                     <div id='list' onClick={(id) => handleClick(id)} className={props.position.position === 'list' ? ('button button-additional') : ('button')}>LIST</div>
                     <div id='task' onClick={(id) => handleClick(id)} className={props.position.position === 'task' ? ('button button-additional') : ('button')}>TASK</div>
                     <div id='add' onClick={(id) => handleClick(id)} className={props.position.position === 'add' ? ('button button-additional') : ('button')}>ADD</div>
+                    <div id='edit' onClick={(id) => handleClick(id)} className={props.position.position === 'edit' ? ('button button-additional') : ('button')}>EDIT</div>
+
                 </div>
                 <div className='button-box'></div>
             </div>

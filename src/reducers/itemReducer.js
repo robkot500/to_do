@@ -57,6 +57,21 @@ const itemReducer = (state = initItem, action) => {
                 todos: [...state.todos, action.newTask],
                 selectedItem: { id: action.newTask.id },
             }
+        // case 'EDIT_TASK':
+        //     console.log(action);
+        //     return {
+        //         ...state,
+        //         todos: [...state.todos, action.editTask],
+        //         selectedItem: { id: action.editTask.id },
+        //     }
+        case 'ADD_AFTER_EDIT':
+            console.log(action);
+            return {
+                ...state,
+                todos: [...state.todos, action.editedTask],
+                selectedItem: { id: action.editedTask.id },
+            }
+
         case 'CHANGE_CHECK':
             const todos = state.todos.map((todo) => {
                 return {
@@ -111,14 +126,18 @@ const itemReducer = (state = initItem, action) => {
 
         case 'EDIT_TASK':
             console.log(state.todos);
-            console.log(action.id);
+            console.log(action.id)
             const toEdit = state.todos.filter(each => {
                 return each.id === action.id
             })
             const toNotEdit = state.todos.filter(each => {
                 return each.id != action.id
             })
-            toEdit[0].edit = !toEdit[0].edit
+
+            if (toEdit.lenght > 0) {
+                toEdit[0].edit = !toEdit[0].edit
+            } else { }
+
             console.log(toEdit);
             return {
                 ...state,

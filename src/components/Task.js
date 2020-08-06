@@ -7,13 +7,7 @@ import Play from './Play'
 
 
 function Task(props) {
-
-
     console.log(props);
-
-
-
-
     const clickDelete = (id) => {
         props.deleteItem(id)
     }
@@ -24,7 +18,10 @@ function Task(props) {
         console.log(each);
         props.titleCheckTask(each)
     }
+    console.log(props.items);
     const itemDetail = props.items.todos.filter(each => {
+        console.log(props.items.selectedItem);
+        console.log(props.items.selectedItem.id);
         return each.id === props.items.selectedItem.id
     })
     const editTrue = props.items.todos.filter(each => {
@@ -75,10 +72,7 @@ function Task(props) {
                 </div>
                 {alldetails}
                 <div>{itemDetail[0].date != null ? (itemDetail[0].date.toLocaleDateString()) : (null)}</div>
-                <button onClick={() => { clickEdit(itemDetail[0].id, 'add') }}>EDIT</button>
-
-
-
+                <button onClick={() => { clickEdit(itemDetail[0].id, 'edit') }}>EDIT</button>
             </div>
 
         </>
@@ -88,7 +82,6 @@ const mapStateToProps = (state) => {
     console.log(state);
     return {
         items: state.item,
-        // setDate: state.position.date,
         position: state.position
     }
 }
