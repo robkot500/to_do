@@ -49,7 +49,7 @@ function Task(props) {
             </div>
         )
     }
-    console.log(itemDetail[0].date);
+    console.log(details.detail);
     const alldetails = details.detail.map(each => {
         if (each.point != null)
             return (
