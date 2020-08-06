@@ -26,10 +26,6 @@ function Header(props) {
                     <div id='task' onClick={(id) => handleClick(id)} className={props.position.position === 'task' ? ('button button-additional') : ('button')}>TASK</div>
                     <div id='add' onClick={(id) => handleClick(id)} className={props.position.position === 'add' ? ('button button-additional') : ('button')}>ADD</div>
                     <div id='edit' onClick={(id) => handleClick(id)} className={props.position.position === 'edit' ? ('button button-additional') : ('button')}>EDIT</div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 0fc674d9c481eea09304b2b5a6e6bb868609e566
                 </div>
                 <div className='button-box'></div>
             </div>
