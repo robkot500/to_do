@@ -1,17 +1,13 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import DatePicker from "react-datepicker"
-import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css"
 
 function Add(props) {
     console.log(props);
     console.log(props.add.item.todos);
-    const toEdit = props.add.item.todos.filter(each => {
-        return each.edit === true
-    })
 
-    console.log(toEdit);
-    const bbb = {
+    const initTask = {
         title: null,
         titleMarked: false,
         id: null,
@@ -24,22 +20,10 @@ function Add(props) {
     }
 
     const [startDate, setStartDate] = useState(null);
-    const [newTask, setNewTask] = useState(
-        toEdit.length > 0 ? (
-            console.log('bbb'),
-            toEdit[0]
-        ) : (bbb)
-    )
+    const [newTask, setNewTask] = useState(initTask)
     console.log(newTask.title);
 
-    const mouseEnter = (e) => {
-        setNewTask({ newTask, title: null })
 
-    }
-    const mouseLeave = (e) => {
-
-        setNewTask({ newTask, title: e.target.value })
-    }
     const handleChange = (e) => {
         if (e.target.id === 'newTask') {
             newTask.title = e.target.value
@@ -61,14 +45,10 @@ function Add(props) {
         e.preventDefault()
         newTask.date = startDate
         props.displayDetail(newTask.id)
+        props.addNewTask(newTask)
         props.display('task')
         console.log(newTask);
-        toEdit.length > 0 ? (
-            console.log('bbb')
 
-        ) : (
-                props.addNewTask(newTask)
-            )
 
 
     }
@@ -80,21 +60,13 @@ function Add(props) {
     return (
         <>
             <form onSubmit={handleSubmit} type='submit'>
-                <input onChange={handleChange} onMouseDown={mouseEnter} onMouseLeave={mouseLeave}
-                    value={toEdit.length < 1 ? (null) : (console.log(newTask.title), newTask.title)}
-                    id='newTask' type="text" />
+                <input onChange={handleChange} id='newTask' type="text" />
                 <label htmlFor="text">new task</label>
-                <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
-                    value={toEdit.length < 1 ? (null) : (toEdit[0].detail[0] ? (toEdit[0].detail[0].point) : (null))}
-                    placeholder='optional' id='pointOne' type="text" />
+                <input onChange={handleChange} placeholder='optional' id='pointOne' type="text" />
                 <label htmlFor="text">point one</label>
-                <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
-                    value={toEdit.length < 1 ? (null) : (toEdit[0].detail[1] ? (toEdit[0].detail[1].point) : (null))}
-                    placeholder='optional' id='pointTwo' type="text" />
+                <input onChange={handleChange} placeholder='optional' id='pointTwo' type="text" />
                 <label htmlFor="text">point two</label>
-                <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
-                    value={toEdit.length < 1 ? (null) : (toEdit[0].detail[2] ? (toEdit[0].detail[2].point) : (null))}
-                    placeholder='optional' id='pointThree' type="text" />
+                <input onChange={handleChange} placeholder='optional' id='pointThree' type="text" />
                 <label htmlFor="text">point three</label>
                 <DatePicker
                     selected={startDate}
