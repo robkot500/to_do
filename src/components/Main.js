@@ -6,6 +6,7 @@ import Header from './Header';
 import { connect } from 'react-redux';
 import Points from './Points'
 import Play from './Play'
+import Edit from './Edit';
 
 function Main(props) {
     console.log(props);
@@ -16,6 +17,7 @@ function Main(props) {
             {props.position.position === 'list' ? <List /> : null}
             {props.position.position === 'task' ? <Task /> : null}
             {props.position.position === 'add' ? <Add /> : null}
+            {props.position.position === 'edit' ? <Edit /> : null}
             {/* <Play /> */}
         </div>
     )
