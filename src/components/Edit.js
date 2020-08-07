@@ -3,115 +3,112 @@ import { connect } from 'react-redux'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 
-function Add(props) {
-    console.log(props);
-    console.log(props.add.item.todos);
+function Edit(props) {
+    console.log(props.add.item.todos[0]);
     const toEdit = props.add.item.todos.filter(each => {
         return each.edit === true
     })
-
+    console.log('toEdit', toEdit);
+    let initState
+    if (toEdit.length > 0) { initState = toEdit[0] }
+    else { initState = props.add.item.todos[0] }
     console.log(toEdit);
-    const bbb = {
-        title: null,
-        titleMarked: false,
-        id: null,
-        date: null,
-        detail: [
-            { point: null, pointMarked: false },
-            { point: null, pointMarked: false },
-            { point: null, pointMarked: false }
-        ]
-    }
-
+    console.log(toEdit.lenghth);
     const [startDate, setStartDate] = useState(null);
-    const [newTask, setNewTask] = useState(
-        toEdit.length > 0 ? (
-            console.log('bbb'),
-            toEdit[0]
+    const [editTask, setEditTask] = useState(initState)
+    console.log(editTask);
 
-        ) : (bbb)
-    )
-    const filterToEdit = props.add.item.todos.filter(each => {
-        return each.edit != false
-    })
-    console.log(filterToEdit.date);
 
-    const mouseEnter = (e) => {
-        e.target.value = null
-        // props.changeDetail(id)
+    const handleMouseDown = (e) => {
+
+        if (e.target.id === 'newTask') {
+
+            setEditTask({ ...editTask, title: null })
+            console.log('oooooooooooooooooo', editTask);
+        }
+        if (e.target.id === 'pointOne') {
+            setEditTask({
+                ...editTask, detail: editTask.detail.map(each => { if (each !== editTask.detail[0]) return each; return { ...each, point: null } }
+                )
+            })
+        }
+        if (e.target.id === 'pointTwo') {
+            setEditTask({
+                ...editTask, detail: editTask.detail.map(each => { if (each !== editTask.detail[1]) return each; return { ...each, point: null } }
+                )
+            })
+        }
+        if (e.target.id === 'pointThree') {
+            setEditTask({
+                ...editTask, detail: editTask.detail.map(each => { if (each !== editTask.detail[2]) return each; return { ...each, point: null } }
+                )
+            })
+        }
+
     }
     const handleChange = (e) => {
         if (e.target.id === 'newTask') {
-            newTask.title = e.target.value
-            console.log(newTask.title);
-        } if (e.target.id === 'pointOne') {
-            newTask.detail[0] = { point: e.target.value, pointMarked: false }
-        } if (e.target.id === 'pointTwo') {
-            newTask.detail[1] = { point: e.target.value, pointMarked: false }
-        } if (e.target.id === 'pointThree') {
-            newTask.detail[2] = { point: e.target.value, pointMarked: false }
+            setEditTask({ ...editTask, title: e.target.value })
         }
-        newTask.id = new Date().getTime()
-
+        if (e.target.id === 'pointOne') {
+            setEditTask({
+                ...editTask, detail: editTask.detail.map(each => { if (each !== editTask.detail[0]) return each; return { ...each, point: e.target.value } }
+                )
+            })
+        }
+        if (e.target.id === 'pointTwo') {
+            setEditTask({
+                ...editTask, detail: editTask.detail.map(each => { if (each !== editTask.detail[1]) return each; return { ...each, point: e.target.value } }
+                )
+            })
+        }
+        if (e.target.id === 'pointThree') {
+            setEditTask({
+                ...editTask, detail: editTask.detail.map(each => { if (each !== editTask.detail[2]) return each; return { ...each, point: e.target.value } }
+                )
+            })
+        }
     }
 
-    console.log(toEdit);
-    // const handleValue = () => {
-    //     console.log('ggggggggggggggggggggggggggggggg', filterToEdit[0].title);
-    //     newTask.title = filterToEdit[0].title
-    // }
 
 
 
     const handleSubmit = (e, id) => {
         e.preventDefault()
-        newTask.date = startDate
-        props.addNewTask(newTask)
-        props.displayDetail(newTask.id)
+        console.log(editTask.id);
+        editTask.date = startDate
+        props.editTask(editTask)
+        props.addAfterEdit(editTask)
+        props.displayDetail(editTask.id)
         props.display('task')
-        console.log(newTask);
 
-        // props.add.item.todos.find(toEdit=>{
-        //     return toEdit = toEdit.
-        // })
+
+
     }
-    const handleDate = (date) => {
-        setStartDate(date)
-    }
-    // const itemDetailEdit = props.add.item.todos.filter(each => {
-    //     console.log(each);
-    //     // return each.id === props.items.selectedItem.id
-    // })
+    // const handleDate = (date) => {
+    //     setStartDate(date)
+    // }
+
 
     return (
         <>
             <form onSubmit={handleSubmit} type='submit'>
-                <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
-                    value={filterToEdit.length < 1 ? (null) : (filterToEdit[0].title)}
-                    id='newTask' type="text" />
-                <label htmlFor="text">edit</label>
-                <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
-                    value={filterToEdit.length < 1 ? (null) : (filterToEdit[0].detail[0] ? (filterToEdit[0].detail[0].point) : (null))}
+                <input onChange={handleChange} onMouseDown={handleMouseDown} value={editTask.title} placeholder='optional' id='newTask' type="text" />
+                <label htmlFor="text">new task</label>
+                <input onChange={handleChange} onMouseDown={handleMouseDown}
+                    value={editTask.detail[0] ? (editTask.detail[0].point) : (null)}
                     placeholder='optional' id='pointOne' type="text" />
                 <label htmlFor="text">point one</label>
-                <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
-                    value={filterToEdit.length < 1 ? (null) : (filterToEdit[0].detail[1] ? (filterToEdit[0].detail[1].point) : (null))}
+                <input onChange={handleChange} onMouseDown={handleMouseDown}
+                    value={editTask.detail[1] ? (editTask.detail[1].point) : (null)}
                     placeholder='optional' id='pointTwo' type="text" />
                 <label htmlFor="text">point two</label>
-                <input onChange={handleChange} onMouseDown={mouseEnter} onFocus="value=''"
-                    value={filterToEdit.length < 1 ? (null) : (filterToEdit[0].detail[2] ? (filterToEdit[0].detail[2].point) : (null))}
+                <input onChange={handleChange} onMouseDown={handleMouseDown}
+                    value={editTask.detail[2] ? (editTask.detail[2].point) : (null)}
                     placeholder='optional' id='pointThree' type="text" />
                 <label htmlFor="text">point three</label>
-                <DatePicker
-                    selected={startDate}
-                    onChange={date => handleDate(date)}
-                    // onMouseDown={mouseEnter}
-                    timeInputLabel="Time:"
-                    dateFormat="MM/dd/yyyy h:mm aa"
-                    showTimeInput
-                    placeholderText="Click to select a date"
-                />
-                <button>ADD</button>
+
+                <button>EDIT</button>
             </form >
         </>
     )
@@ -124,10 +121,11 @@ const mapStateToProps = (addNewTask, state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        addNewTask: (newTask) => { dispatch({ type: 'ADD_NEW_TASK', newTask: newTask }) },
+        editTask: (editTask) => { dispatch({ type: 'EDIT_TASK', editTask: editTask }) },
+        addAfterEdit: (editedTask) => { dispatch({ type: 'ADD_AFTER_EDIT', editedTask: editedTask }) },
         displayDetail: (id) => { dispatch({ type: 'DISPLAY_DETAIL', id: id }) },
         display: (id) => { dispatch({ type: 'DISPLAY', id: id }) },
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Add)
+export default connect(mapStateToProps, mapDispatchToProps)(Edit)
