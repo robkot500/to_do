@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 
 function Edit(props) {
+    console.log(props);
     console.log(props.add.item.todos[0]);
     const toEdit = props.add.item.todos.filter(each => {
         return each.edit === true
@@ -107,7 +108,6 @@ function Edit(props) {
                     value={editTask.detail[2] ? (editTask.detail[2].point) : (null)}
                     placeholder='optional' id='pointThree' type="text" />
                 <label htmlFor="text">point three</label>
-
                 <button>EDIT</button>
             </form >
         </>

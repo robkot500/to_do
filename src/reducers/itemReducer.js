@@ -121,21 +121,28 @@ const itemReducer = (state = initItem, action) => {
 
             }
 
-        // case 'EDIT_TASK':
-        //     console.log(state.todos);
-        //     console.log(action.id);
-        //     const toEdit = state.todos.filter(each => {
-        //         return each.id === action.id
-        //     })
-        //     const toNotEdit = state.todos.filter(each => {
-        //         return each.id != action.id
-        //     })
-        //     toEdit[0].edit = !toEdit[0].edit
-        //     console.log(toEdit);
-        //     return {
-        //         ...state,
-        //         todos: [...toNotEdit, toEdit[0]]
-        //     };
+        case 'EDIT_TASK':
+            console.log(state.todos);
+            console.log(action.id)
+            const toEdit = state.todos.filter(each => {
+                return each.id === action.id
+            })
+
+            const toNotEdit = state.todos.filter(each => {
+                return each.id != action.id
+            })
+
+            if (toEdit.length > 0) {
+                toEdit[0].edit = true
+            } else { }
+            console.log(toEdit);
+            console.log(toEdit.length);
+            console.log(toEdit[0].edit);
+            console.log(toEdit);
+            return {
+                ...state,
+                todos: [...toNotEdit, toEdit[0]]
+            };
         case 'EDIT_TASK_STATE':
             console.log(state.todos);
             console.log(action.task);
