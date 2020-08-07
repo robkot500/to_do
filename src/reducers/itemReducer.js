@@ -52,26 +52,32 @@ const itemReducer = (state = initItem, action) => {
 
             }
         case 'ADD_NEW_TASK':
+            console.log(state);
             return {
                 ...state,
                 todos: [...state.todos, action.newTask],
                 selectedItem: { id: action.newTask.id },
             }
-        // case 'EDIT_TASK':
-        //     console.log(action);
-        //     return {
-        //         ...state,
-        //         todos: [...state.todos, action.editTask],
-        //         selectedItem: { id: action.editTask.id },
-        //     }
         case 'ADD_AFTER_EDIT':
             console.log(action);
+            console.log(action.editedTask.detail[0]);
+            console.log(state.todos);
+            const edited = action.editedTask
+            const detail =
+                [{ point: action.editedTask.detail[0], pointMarked: false },
+                { point: action.editedTask.detail[1], pointMarked: false },
+                { point: action.editedTask.detail[2], pointMarked: false }]
             return {
                 ...state,
-                todos: [...state.todos, action.editedTask],
+                todos: state.todos.map(each => {
+                    if (each.id != action.editedTask.id) return each; return {
+                        ...each, title: action.editedTask.title, detail: action.editedTask.detail,
+                    }
+
+                }),
                 selectedItem: { id: action.editedTask.id },
             }
-
+        // [...state.todos, action.editedTask],
         case 'CHANGE_CHECK':
             const todos = state.todos.map((todo) => {
                 return {
@@ -86,12 +92,6 @@ const itemReducer = (state = initItem, action) => {
                 todos
             };
         case 'CHANGE_TITLE_TASK':
-            // function findTodo(todo) {
-            //     return todo = action.id
-            // }
-            // const todo = state.todos.find((findTodo) => {
-            //     return findTodo
-            // })
             console.log(state.todos);
             console.log(action.each);
             const todo = state.todos.find((todoItem) => {
@@ -122,26 +122,29 @@ const itemReducer = (state = initItem, action) => {
             }
 
         case 'EDIT_TASK':
-            console.log(state.todos);
-            console.log(action.id)
-            const toEdit = state.todos.filter(each => {
-                return each.id === action.id
-            })
+            // console.log(state.todos);
+            // console.log(action.id)
+            // const toEdit = state.todos.filter(each => {
+            //     return each.id === action.id
+            // })
 
-            const toNotEdit = state.todos.filter(each => {
-                return each.id != action.id
+            // const toNotEdit = state.todos.filter(each => {
+            //     return each.id != action.id
+            // })
+            // console.log('notedit', toNotEdit);
+            // if (toEdit.length > 0) {
+            //     toEdit[0].edit = true
+            // }
+            // else { toEdit[0] = null }
+            // console.log(toEdit);
+            // console.log(toEdit.length);
+            const allTodos = state.todos.map(each => {
+                if (each.id != action.id) return each; return { ...each, edit: true }
             })
-
-            if (toEdit.length > 0) {
-                toEdit[0].edit = true
-            } else { }
-            console.log(toEdit);
-            console.log(toEdit.length);
-            console.log(toEdit[0].edit);
-            console.log(toEdit);
             return {
                 ...state,
-                todos: [...toNotEdit, toEdit[0]]
+                todos: [...allTodos]
+                // todos: [...toNotEdit, toEdit[0]]
             };
         case 'EDIT_TASK_STATE':
             console.log(state.todos);

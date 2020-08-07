@@ -81,9 +81,10 @@ function Add(props) {
         </>
     )
 }
-const mapStateToProps = (addNewTask, state) => {
+const mapStateToProps = (state) => {
+    console.log(state);
     return {
-        add: addNewTask,
+        add: state,
         position: state.position
     }
 }

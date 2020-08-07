@@ -53,7 +53,7 @@ function List(props) {
 }
 
 const mapStateToProps = (state, deleteItem) => {
-    console.log('liiii', deleteItem);
+    console.log('liiii', state);
 
     return {
         items: state.item,

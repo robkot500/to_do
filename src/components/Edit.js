@@ -7,6 +7,7 @@ function Edit(props) {
     console.log(props);
     console.log(props.add.item.todos[0]);
     const toEdit = props.add.item.todos.filter(each => {
+        console.log(each);
         return each.edit === true
     })
     console.log('toEdit', toEdit);
@@ -14,7 +15,7 @@ function Edit(props) {
     if (toEdit.length > 0) { initState = toEdit[0] }
     else { initState = props.add.item.todos[0] }
     console.log(toEdit);
-    console.log(toEdit.lenghth);
+    console.log(toEdit.lenght);
     const [startDate, setStartDate] = useState(null);
     const [editTask, setEditTask] = useState(initState)
     console.log(editTask);
@@ -76,7 +77,7 @@ function Edit(props) {
 
     const handleSubmit = (e, id) => {
         e.preventDefault()
-        console.log(editTask.id);
+        console.log(editTask);
         editTask.date = startDate
         props.editTask(editTask)
         props.addAfterEdit(editTask)
@@ -113,9 +114,11 @@ function Edit(props) {
         </>
     )
 }
-const mapStateToProps = (addNewTask, state) => {
+const mapStateToProps = (state) => {
+    console.log(state);
+    // console.log(addAfterEdit);
     return {
-        add: addNewTask,
+        add: state,
         position: state.position
     }
 }
