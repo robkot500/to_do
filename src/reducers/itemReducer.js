@@ -63,10 +63,7 @@ const itemReducer = (state = initItem, action) => {
             console.log(action.editedTask.detail[0]);
             console.log(state.todos);
             const edited = action.editedTask
-            const detail =
-                [{ point: action.editedTask.detail[0], pointMarked: false },
-                { point: action.editedTask.detail[1], pointMarked: false },
-                { point: action.editedTask.detail[2], pointMarked: false }]
+
             return {
                 ...state,
                 todos: state.todos.map(each => {

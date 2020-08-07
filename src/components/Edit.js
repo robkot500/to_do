@@ -5,18 +5,21 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function Edit(props) {
     console.log(props);
-    console.log(props.add.item.todos[0]);
+    console.log(props.add.item.todos[0].date);
     const toEdit = props.add.item.todos.filter(each => {
         console.log(each);
         return each.edit === true
     })
     console.log('toEdit', toEdit);
+    let initDate
+    if (toEdit.length > 0) { initDate = toEdit[0].date }
+    else { initDate = props.add.item.todos[0].date }
     let initState
     if (toEdit.length > 0) { initState = toEdit[0] }
     else { initState = props.add.item.todos[0] }
     console.log(toEdit);
     console.log(toEdit.lenght);
-    const [startDate, setStartDate] = useState(null);
+    const [startDate, setStartDate] = useState(initDate);
     const [editTask, setEditTask] = useState(initState)
     console.log(editTask);
 
@@ -87,9 +90,9 @@ function Edit(props) {
 
 
     }
-    // const handleDate = (date) => {
-    //     setStartDate(date)
-    // }
+    const handleDate = (date) => {
+        setStartDate(date)
+    }
 
 
     return (
@@ -109,6 +112,14 @@ function Edit(props) {
                     value={editTask.detail[2] ? (editTask.detail[2].point) : (null)}
                     placeholder='optional' id='pointThree' type="text" />
                 <label htmlFor="text">point three</label>
+                <DatePicker
+                    selected={startDate}
+                    onChange={date => handleDate(date)}
+                    timeInputLabel="Time:"
+                    dateFormat="MM/dd/yyyy h:mm aa"
+                    showTimeInput
+                    placeholderText="Click to select a date"
+                />
                 <button>EDIT</button>
             </form >
         </>
