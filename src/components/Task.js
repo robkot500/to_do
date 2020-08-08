@@ -27,13 +27,13 @@ function Task(props) {
     const editTrue = props.items.todos.filter(each => {
         return each.edit === true
     })
-    // const editBack = () => {
-    //     props.editTaskState()
-    // }
-    // useEffect(() => {
-    //     editBack()
-    // }, []);
 
+    useEffect(() => {
+        editBack()
+    }, []);
+    const editBack = () => {
+        props.editTaskState()
+    }
     const clickEdit = (item, id) => {
         props.display(item, id)
         props.editTask(item)
@@ -92,7 +92,7 @@ const mapDispatchToProps = (dispatch) => {
         titleCheckTask: (each) => { dispatch({ type: 'CHANGE_TITLE_TASK', each: each }) },
         display: (task, id) => { dispatch({ type: 'DISPLAY', task: task, id: id }) },
         editTask: (id) => { dispatch({ type: 'EDIT_TASK', id: id }) },
-        //editTaskState: () => { dispatch({ type: 'EDIT_TASK_STATE' }) },
+        editTaskState: () => { dispatch({ type: 'EDIT_TASK_STATE' }) },
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Task)
