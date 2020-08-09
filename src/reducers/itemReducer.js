@@ -58,17 +58,20 @@ const itemReducer = (state = initItem, action) => {
                 todos: [...state.todos, action.newTask],
                 selectedItem: { id: action.newTask.id },
             }
+
         case 'ADD_AFTER_EDIT':
             console.log(action);
-            console.log(action.editedTask.detail[0]);
+            console.log(action.editedTask.detail);
             console.log(state.todos);
-            const edited = action.editedTask
-
+            // const edited = action.editedTask
+            const newDetail = action.editedTask.detail.filter(each => each.point.length > 0)
+            console.log(newDetail);
+            // const newDeta = action.editedTask.detail.map()
             return {
                 ...state,
                 todos: state.todos.map(each => {
                     if (each.id != action.editedTask.id) return each; return {
-                        ...each, title: action.editedTask.title, detail: action.editedTask.detail,
+                        ...each, title: action.editedTask.title, date: action.editedTask.date, detail: newDetail,
                     }
 
                 }),
