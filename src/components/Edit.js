@@ -39,12 +39,34 @@ function Edit(props) {
                 ...editTask, detail: editTask.detail.map(each => { if (each !== editTask.detail[0]) return each; return { ...each, point: e.target.value } }
                 )
             })
+            if (editTask.detail[0] == undefined && e.target.value.length > 0) {
+                editTask.detail[0] = { point: e.target.value, pointMarked: false }
+                const newPoint = { point: e.target.value, pointMarked: false }
+                setEditTask({
+                    ...editTask, detail: editTask.detail.map(each => {
+                        return each; return { ...each, newPoint }
+                    })
+                })
+
+
+            }
         }
         if (e.target.id === 'pointTwo') {
             setEditTask({
                 ...editTask, detail: editTask.detail.map(each => { if (each !== editTask.detail[1]) return each; return { ...each, point: e.target.value } }
                 )
             })
+            if (editTask.detail[1] == undefined && e.target.value.length > 0) {
+                editTask.detail[1] = { point: e.target.value, pointMarked: false }
+                const newPoint = { point: e.target.value, pointMarked: false }
+                setEditTask({
+                    ...editTask, detail: editTask.detail.map(each => {
+                        return each; return { ...each, newPoint }
+                    })
+                })
+
+
+            }
         }
         if (e.target.id === 'pointThree') {
             setEditTask({
@@ -52,14 +74,13 @@ function Edit(props) {
                     if (each !== editTask.detail[2]) return each; return { ...each, point: e.target.value }
                 })
             })
-            let newPoint
+
             if (editTask.detail[2] == undefined && e.target.value.length > 0) {
-                console.log('sssssssssssssssssss')
                 editTask.detail[2] = { point: e.target.value, pointMarked: false }
-                newPoint = { point: e.target.value, pointMarked: false }
+                const newPoint = { point: e.target.value, pointMarked: false }
                 setEditTask({
                     ...editTask, detail: editTask.detail.map(each => {
-                        if (2 + 2 === 4) return each; return { ...each, newPoint }
+                        return each; return { ...each, newPoint }
                     })
                 })
 
@@ -69,8 +90,8 @@ function Edit(props) {
         }
     }
 
-    const checkPoints = editTask.detail.filter(each => each.point.length > 0)
-    console.log(checkPoints);
+    // const checkPoints = editTask.detail.filter(each => each.point.length > 0)
+    // console.log(checkPoints);
 
 
 

@@ -64,7 +64,7 @@ const itemReducer = (state = initItem, action) => {
             console.log(action.editedTask.detail);
             console.log(state.todos);
             // const edited = action.editedTask
-            const newDetail = action.editedTask.detail.filter(each => each.point.length > 0)
+            const newDetail = action.editedTask.detail.length > 0 ? (action.editedTask.detail.filter(each => each.point != null)) : (null)
             console.log(newDetail);
             // const newDeta = action.editedTask.detail.map()
             return {
