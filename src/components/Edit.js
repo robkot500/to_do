@@ -4,18 +4,29 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 
 function Edit(props) {
-    console.log(props);
+    console.log(props.add.item.todos[0]);
     const toEdit = props.add.item.todos.filter(each => {
         return each.edit === true
     })
+
     let initDate
-    if (toEdit.length > 0) { initDate = toEdit[0].date }
-    else { initDate = props.add.item.todos[0].date }
     let initState
-    if (toEdit.length > 0) { initState = toEdit[0] }
-    else { initState = props.add.item.todos[0] }
+    if (toEdit.length > 0) { initDate = toEdit[0].date; initState = toEdit[0] }
+    if (props.add.item.todos.length > 0) { initDate = props.add.item.todos[0].date; initState = props.add.item.todos[0] }
+    else { initDate = null; initState = null }
+
     const [startDate, setStartDate] = useState(initDate);
     const [editTask, setEditTask] = useState(initState)
+    if (initState === null) {
+        return (
+            <div className='title'>
+                <div className='title-wrapper'>
+                    <p>You have no todos left</p>
+                </div>
+            </div>
+        )
+    }
+
 
 
 
