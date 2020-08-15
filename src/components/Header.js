@@ -1,7 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 function Header(props) {
+    const [newDate, setNewDate] = useState(new Date())
+    console.log(newDate)
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setNewDate(new Date())
+        }, 1000);
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    const weekday = days[new Date().getDay()]
+    const date = newDate.toLocaleDateString();
+    const time = newDate.toLocaleTimeString();
 
     console.log('sss', props);
     const handleClick = (e) => {
@@ -17,9 +31,20 @@ function Header(props) {
         }
     }
 
+
+
+
+
+    console.log(date)
     return (
         <header>
-            <div className='up'></div>
+            <div className='up'>
+                <div className='my-day'>{weekday}
+                    <div className='date'>{time}, {date}</div>
+                    {/* <div>{time}</div> */}
+
+                </div>
+            </div>
             <div className='down'>
                 <div className="button-wrapper">
                     <div id='list' onClick={(id) => handleClick(id)} className={props.position.position === 'list' ? ('button button-additional') : ('button')}>LIST</div>

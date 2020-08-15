@@ -3,10 +3,26 @@ header{
     .up{
         width: 100%;
         height: 70%;
-        background-image: url(../../assets/back.jpg);
+        background-image: url(../../assets/mountains.jpg);
         background-position: bottom;
         background-repeat: no-repeat;
         background-size: cover;
+        display: flex;
+        align-items: flex-end;
+        .my-day{
+            width:100%;
+            height: 50%;
+            // border: 1px solid black;
+            font-size: 30px;
+            padding: 0 20px 10px 20px;
+            color:$white;
+            font-style: italic;
+        }
+        .date{
+            font-size: 20px;
+            margin-top: 7px;
+            
+        }
     }
     .down{
         width: 100%;
@@ -27,6 +43,9 @@ header{
         justify-content: center;
         cursor: pointer;
         font-size: 20px;
+        // border-radius: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
         }
     .button-additional{
         border: 2px solid $main-color;
