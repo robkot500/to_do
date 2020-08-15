@@ -29,22 +29,33 @@
     .detail{
         width: 100%;
         height: 45%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
   
-    .fas{
-        font-size: 25px;
+    .fa-trash-alt{
+        // font-size: 20px;
         cursor: pointer;
+        margin: 0 0 0 15px;
+    }
+    .deadline{
+        margin: 0 15px;
+    }
+    .fa-bell{
+        margin: 0 0 0 15px;
     }
     .check-detail{
-        width: 35%;
-        height: 65%;
+        width: 20%;
+        height: 50%;
         background-color: $main-color;
         border-radius: 6px;
-        margin: auto;
+        // margin: auto;
         display: flex;
         align-items: center;
         justify-content: center;
         color: $white;
+        font-size: 12px;
     }
     
 }

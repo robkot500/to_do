@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 function List(props) {
-    console.log(props);
+    console.log(props.items.todos);
     const sortItems = (a, b) => a.id - b.id;
     const sort = props.items.todos.sort(sortItems)
     console.log(sort);
@@ -19,6 +19,10 @@ function List(props) {
     const handleTitle = (each) => {
         props.changeTitleList(each)
     }
+    const flag = props.items.todos.map(each => {
+
+    })
+    // let style
     if (props.items.todos.length < 1) {
         return (
             <div className='title'>
@@ -29,7 +33,11 @@ function List(props) {
         )
     }
     const display = props.items.todos.map(task => {
-
+        // if (task.flag === 'green') {
+        //     style = { color: 'green' }
+        // } if (task.flag === 'yellow') {
+        //     style = { color: 'yellow' }
+        // }
         return (
             <div key={task.id} className='item'>
                 <div className='title'>
@@ -37,10 +45,14 @@ function List(props) {
                         <input onClick={(id) => { handleTitle(task) }} className='title-check' id={task.title} type="checkbox" checked={task.titleMarked} />
                         <label onClick={(id) => { handleTitle(task) }} className='title-label' htmlFor="todo" data-content={task.title}>{task.title}</label>
                     </div>
-                    <i onClick={() => { clickDelete(task.id) }} className="fas fa-trash-alt"></i>
+
                 </div>
                 <div className='detail'>
-                    <div onClick={() => { clickDetail('task', task.id) }} className="check-detail">DETAIL</div>
+                    <div className="flag"><i class="fas fa-flag" style={{ color: task.flag }}></i></div>
+                    <i class="fas fa-bell"></i>
+                    <div className="deadline">{task.date.toLocaleTimeString([], { timeStyle: 'short' })}, {task.date.toLocaleDateString()}</div>
+                    <div onClick={() => { clickDetail('task', task.id) }} className="check-detail">DETAILS</div>
+                    <i onClick={() => { clickDelete(task.id) }} className="fas fa-trash-alt"></i>
                 </div>
             </div >
         )

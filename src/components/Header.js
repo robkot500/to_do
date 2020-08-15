@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 function Header(props) {
     const [newDate, setNewDate] = useState(new Date())
-    console.log(newDate)
     useEffect(() => {
         const interval = setInterval(() => {
             setNewDate(new Date())
@@ -17,7 +16,6 @@ function Header(props) {
     const date = newDate.toLocaleDateString();
     const time = newDate.toLocaleTimeString();
 
-    console.log('sss', props);
     const handleClick = (e) => {
         console.log('aaaa', e.target.id);
         if (e.target.id === 'list') {
@@ -31,11 +29,6 @@ function Header(props) {
         }
     }
 
-
-
-
-
-    console.log(date)
     return (
         <header>
             <div className='up'>

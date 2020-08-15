@@ -6,6 +6,7 @@ const initItem = {
             id: 1,
             date: new Date(2021, 11, 24, 10, 33),
             edit: false,
+            flag: 'yellow',
             detail: [
                 { point: 'wake my wife upGG', pointMarked: false },
                 { point: 'check the weatherGG', pointMarked: false },
@@ -18,6 +19,7 @@ const initItem = {
             id: 2,
             date: new Date(2022, 11, 24, 10, 33),
             edit: false,
+            flag: 'green',
             detail: [
                 { point: 'wake my wife upWW', pointMarked: false },
                 { point: 'check the weatherWW', pointMarked: false },
