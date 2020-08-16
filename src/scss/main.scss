@@ -1,9 +1,13 @@
 @import './_partials/reset';
 @import './_partials/variables';
+@import './_partials/mixins';
 @import './_partials/header';
 @import './_partials/list';
 @import './_partials/checkbox';
 @import './_partials/detail';
+@import './_partials/edit';
+@import './_partials/task';
+
 * {
     box-sizing: border-box;
     &::before, &::after {
@@ -22,7 +26,6 @@ body{
     width: 380px;
     height: 700px;
     margin: 35px 50vw 35px 10vw;
-   
 }
 
 @media screen and (max-width: 900px){

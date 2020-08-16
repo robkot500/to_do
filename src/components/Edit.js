@@ -8,22 +8,23 @@ function Edit(props) {
     const toEdit = props.add.item.todos.filter(each => {
         return each.edit === true
     })
-    console.log(toEdit)
+    console.log(toEdit[0])
     let initDate
     let initState
     if (toEdit.length > 0) { initDate = toEdit[0].date; initState = toEdit[0] }
-    // if (props.add.item.todos.length > 0) { initDate = props.add.item.todos[0].date; initState = props.add.item.todos[0] }
+    else if (props.add.item.todos.length > 0 && toEdit.length === 0) { initDate = props.add.item.todos[0].date; initState = props.add.item.todos[0]; console.log('wwwwww') }
     else { initDate = null; initState = null }
-
+    console.log(props.add.item.todos.length)
+    console.log(toEdit.length)
+    console.log(initState)
     const [startDate, setStartDate] = useState(initDate);
     const [editTask, setEditTask] = useState(initState)
     console.log(editTask)
     if (initState === null) {
         return (
-            <div className='title'>
-                <div className='title-wrapper'>
-                    <p>You have no todos left</p>
-                </div>
+            <div className='no-todos-container'>
+                <p className='no-todos'>You have no todos left</p>
+                <div className='leisure'></div>
             </div>
         )
     }
@@ -126,34 +127,36 @@ function Edit(props) {
 
     return (
         <>
-            <form onSubmit={handleSubmit} type='submit'>
-                <input onChange={handleChange} value={editTask.title} placeholder='optional' id='newTask' type="text" />
-                <label htmlFor="text">new task</label>
-                <input onChange={handleChange}
-                    value={editTask.detail[0] ? (editTask.detail[0].point) : (null)}
-                    placeholder='optional' id='pointOne' type="text" />
-                <label htmlFor="text">point one</label>
-                <input onChange={handleChange}
-                    value={editTask.detail[1] ? (editTask.detail[1].point) : (null)}
-                    placeholder='optional' id='pointTwo' type="text" />
-                <label htmlFor="text">point two</label>
-                {/* {editTask.detail[2].point ? (< input onChange={handleChange}
+            <div className='edit-container'>
+                <form onSubmit={handleSubmit} type='submit'>
+                    <input onChange={handleChange} value={editTask.title} placeholder='optional' id='newTask' type="text" />
+                    <label htmlFor="text">new task</label>
+                    <input onChange={handleChange}
+                        value={editTask.detail[0] ? (editTask.detail[0].point) : (null)}
+                        placeholder='optional' id='pointOne' type="text" />
+                    <label htmlFor="text">point one</label>
+                    <input onChange={handleChange}
+                        value={editTask.detail[1] ? (editTask.detail[1].point) : (null)}
+                        placeholder='optional' id='pointTwo' type="text" />
+                    <label htmlFor="text">point two</label>
+                    {/* {editTask.detail[2].point ? (< input onChange={handleChange}
                     value={editTask.detail[2] ? (editTask.detail[2].point) : (null)}
                     placeholder='optional' id='pointThree' type="text" />) : (null)} */}
-                <input onChange={handleChange}
-                    value={editTask.detail[2] ? (editTask.detail[2].point) : (null)}
-                    placeholder='optional' id='pointThree' type="text" />
-                <label htmlFor="text">point three</label>
-                <DatePicker
-                    selected={startDate}
-                    onChange={date => handleDate(date)}
-                    timeInputLabel="Time:"
-                    dateFormat="MM/dd/yyyy h:mm aa"
-                    showTimeInput
-                    placeholderText="Click to select a date"
-                />
-                <button>EDIT</button>
-            </form >
+                    <input onChange={handleChange}
+                        value={editTask.detail[2] ? (editTask.detail[2].point) : (null)}
+                        placeholder='optional' id='pointThree' type="text" />
+                    <label htmlFor="text">point three</label>
+                    <DatePicker
+                        selected={startDate}
+                        onChange={date => handleDate(date)}
+                        timeInputLabel="Time:"
+                        dateFormat="MM/dd/yyyy h:mm aa"
+                        showTimeInput
+                        placeholderText="Click to select a date"
+                    />
+                    <button>EDIT</button>
+                </form >
+            </div>
         </>
     )
 }

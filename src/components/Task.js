@@ -44,10 +44,9 @@ function Task(props) {
     const [details] = itemDetail
     if (itemDetail.length < 1) {
         return (
-            <div className='title'>
-                <div className='title-wrapper'>
-                    <p>You have no todos left</p>
-                </div>
+            <div className='no-todos-container'>
+                <p className='no-todos'>You have no todos left</p>
+                <div className='leisure'></div>
             </div>
         )
     }

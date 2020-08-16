@@ -1,0 +1,22 @@
+@mixin leisure {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 50px;
+        height: 70%;
+        background-color: $white;
+        .no-todos{
+            font-size: 30px;
+            font-style: italic;
+            margin: 5%;
+        }
+        .leisure{
+            background-image: url('./../../assets/hobby-c.png');
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 320px;
+            height: 330px;
+        }
+}
