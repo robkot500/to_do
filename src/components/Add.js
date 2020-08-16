@@ -31,13 +31,31 @@ function Add(props) {
             newTask.title = e.target.value
             console.log(newTask.title);
         } if (e.target.id === 'pointOne') {
-            newTask.detail[0] = { point: e.target.value, pointMarked: false }
+            // newTask.detail[0] = { point: e.target.value, pointMarked: false }
+            setNewTask({
+                ...newTask, detail: newTask.detail.map(each => {
+                    if (each != newTask.detail[0]) return each; return { point: e.target.value, pointMarked: false }
+                })
+            })
         } if (e.target.id === 'pointTwo') {
-            newTask.detail[1] = { point: e.target.value, pointMarked: false }
+            // newTask.detail[1] = { point: e.target.value, pointMarked: false } 
+            setNewTask({
+                ...newTask, detail: newTask.detail.map(each => {
+                    if (each != newTask.detail[1]) return each; return { point: e.target.value, pointMarked: false }
+                })
+            })
         } if (e.target.id === 'pointThree') {
-            newTask.detail[2] = { point: e.target.value, pointMarked: false }
+            // newTask.detail[2] = { point: e.target.value, pointMarked: false }
+            setNewTask({
+                ...newTask, detail: newTask.detail.map(each => {
+                    if (each != newTask.detail[2]) return each; return { point: e.target.value, pointMarked: false }
+                })
+            })
         } if (e.target.id === 'selectColor') { setNewTask({ ...newTask, flag: e.target.value }) }
-
+        if (e.target.id === 'notes') {
+            // newTask.notes = e.target.value
+            setNewTask({ ...newTask, notes: e.target.value })
+        }
         newTask.id = new Date().getTime()
 
 
@@ -87,6 +105,7 @@ function Add(props) {
                     showTimeInput
                     placeholderText="Click to select a date"
                 />
+                <textarea onChange={handleChange} name="notes" id="notes" cols="35" rows="10"></textarea>
                 <button>ADD</button>
             </form >
         </>

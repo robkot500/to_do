@@ -1,29 +1,44 @@
 const initItem = {
     todos: [
         {
-            title: 'Get out of bed',
+            title: 'get out of bed',
             titleMarked: false,
             id: 1,
             date: new Date(2021, 11, 24, 10, 33),
             edit: false,
             flag: 'green',
             detail: [
-                { point: 'wake my wife upGG', pointMarked: false },
-                { point: 'check the weatherGG', pointMarked: false },
-                { point: 'check the weatherGGG', pointMarked: false }
-            ]
+                { point: 'wake my wife up', pointMarked: false },
+                { point: 'check the weather', pointMarked: false },
+                { point: 'nice cup of coffee', pointMarked: false }
+            ],
+            notes: 'Pour almond milk, coffee, sugar, and cream cheese into large plastic cup; blend with an immersion blender until the cream cheese is completely blended into the liquid, about 1 minute. Pour the blended beverage into a tall glass with ice cubes.Flavor variations: add 2 teaspoons of sugar-free chocolate syrup or other flavor, remembering to reduce the amount of sucralose used.'
         },
         {
-            title: 'Walk the dog',
+            title: 'walk the dog',
             titleMarked: false,
             id: 2,
             date: new Date(2022, 11, 24, 10, 33),
             edit: false,
             flag: 'yellow',
             detail: [
-                { point: 'wake my wife upWW', pointMarked: false },
-                { point: 'check the weatherWW', pointMarked: false },
-            ]
+                { point: 'at least 2 km', pointMarked: false },
+            ],
+            notes: 'Put a leash and collar on the dog. There will come a time when your four-legged friend will recognize it is time to go for a walk by you simply reaching for the leash. Introduce this in your dog’s mind early on by using a collar at a young age. Place the collar around the dog’s neck and say “let’s walk” with the leash in full view.'
+
+        },
+        {
+            title: 'to have fun at the party',
+            titleMarked: false,
+            id: 3,
+            date: null,
+            edit: false,
+            flag: 'purple',
+            detail: [
+                { point: 'only few drinks', pointMarked: false },
+                { point: 'meet new friends', pointMarked: false },
+            ],
+            notes: 'Pimm’s Cup. Starting with a large pitcher, combine the Pimm’s, orange and lemon slices and the mint. Leave it to chill for around 10 minutes then stir in the ginger ale. Take the pint glasses and stand two cucumber wedges on end in each glass. Fill them up halfway with ice then add the Pimm’s mixture. To finish, garnish by pushing the mint down into the drinks and divide the orange, lemon and apple slices between the drinks'
         }
     ],
     selectedItem: {

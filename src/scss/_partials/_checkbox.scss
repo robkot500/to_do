@@ -4,7 +4,9 @@
 
 
 label { 
-  font-size: 28px;
+  font-size: 22px;
+  font-weight: 600;
+
 }
 
 
@@ -18,13 +20,14 @@ label {
 }
 
 .title-check + .title-label:before { content: "\f096"; } /* unchecked icon */
-.title-check + .title-label:before { letter-spacing: 13px;font-size: 34px; } /* space between checkbox and label */
+.title-check + .title-label:before { letter-spacing: 13px;font-size: 22px; } /* space between checkbox and label */
 
 .title-check:checked + .title-label:before { content: "\f046"; } /* checked icon */
-.title-check:checked + .title-label:before { letter-spacing: 10px; color:gray;font-size: 34px;} /* allow space for check mark */
+.title-check:checked + .title-label:before { letter-spacing: 10px; color:gray;font-size: 24px; } /* allow space for check mark */
 .title-check:checked + .title-label{
   text-decoration: line-through;
   color:gray;
+  
 }
 
 
