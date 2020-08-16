@@ -143,6 +143,7 @@ const itemReducer = (state = initItem, action) => {
             const allTodos = state.todos.map(each => {
                 if (each.id != action.id) return each; return { ...each, edit: true }
             })
+            console.log(allTodos)
             return {
                 ...state,
                 todos: [...allTodos]

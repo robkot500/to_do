@@ -12,6 +12,8 @@ function Add(props) {
         titleMarked: false,
         id: null,
         date: null,
+        edit: false,
+        flag: 'yellow',
         detail: [
             { point: null, pointMarked: false },
             { point: null, pointMarked: false },

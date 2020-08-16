@@ -8,15 +8,16 @@ function Edit(props) {
     const toEdit = props.add.item.todos.filter(each => {
         return each.edit === true
     })
-
+    console.log(toEdit)
     let initDate
     let initState
     if (toEdit.length > 0) { initDate = toEdit[0].date; initState = toEdit[0] }
-    if (props.add.item.todos.length > 0) { initDate = props.add.item.todos[0].date; initState = props.add.item.todos[0] }
+    // if (props.add.item.todos.length > 0) { initDate = props.add.item.todos[0].date; initState = props.add.item.todos[0] }
     else { initDate = null; initState = null }
 
     const [startDate, setStartDate] = useState(initDate);
     const [editTask, setEditTask] = useState(initState)
+    console.log(editTask)
     if (initState === null) {
         return (
             <div className='title'>

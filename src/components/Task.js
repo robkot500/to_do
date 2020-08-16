@@ -24,6 +24,7 @@ function Task(props) {
         console.log(props.items.selectedItem.id);
         return each.id === props.items.selectedItem.id
     })
+    console.log(itemDetail[0])
     const editTrue = props.items.todos.filter(each => {
         return each.edit === true
     })
@@ -37,6 +38,7 @@ function Task(props) {
     const clickEdit = (item, id) => {
         props.display(item, id)
         props.editTask(item)
+        console.log(item)
     }
 
     const [details] = itemDetail
