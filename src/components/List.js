@@ -50,7 +50,8 @@ function List(props) {
                 <div className='detail'>
                     <div className="flag"><i class="fas fa-flag" style={{ color: task.flag }}></i></div>
                     <i class="fas fa-bell"></i>
-                    <div className="deadline">{task.date.toLocaleTimeString([], { timeStyle: 'short' })}, {task.date.toLocaleDateString()}</div>
+                    {/* <div className="deadline">{task.date.toLocaleTimeString([], { timeStyle: 'short' })}, {task.date.toLocaleDateString()}</div> */}
+                    <div className='deadline'>{task.date ? (task.date.toLocaleTimeString([], { timeStyle: 'short' })) : ('date not set')}, {task.date ? (task.date.toLocaleDateString()) : (null)}</div>
                     <div onClick={() => { clickDetail('task', task.id) }} className="check-detail">DETAILS</div>
                     <i onClick={() => { clickDelete(task.id) }} className="fas fa-trash-alt"></i>
                 </div>

@@ -36,8 +36,10 @@ function Add(props) {
             newTask.detail[1] = { point: e.target.value, pointMarked: false }
         } if (e.target.id === 'pointThree') {
             newTask.detail[2] = { point: e.target.value, pointMarked: false }
-        }
+        } if (e.target.id === 'selectColor') { setNewTask({ ...newTask, flag: e.target.value }) }
+
         newTask.id = new Date().getTime()
+
 
     }
 
@@ -70,6 +72,13 @@ function Add(props) {
                 <label htmlFor="text">point two</label>
                 <input onChange={handleChange} placeholder='optional' id='pointThree' type="text" />
                 <label htmlFor="text">point three</label>
+                <select id='selectColor' onChange={handleChange}>
+                    {/* <select id='selectColor' onChange={e => setNewTask({ ...newTask, flag: e.target.value })}> */}
+
+                    <option value="yellow">yellow</option>
+                    <option value="green">green</option>
+                    <option value="red">red</option>
+                </select>
                 <DatePicker
                     selected={startDate}
                     onChange={date => handleDate(date)}
