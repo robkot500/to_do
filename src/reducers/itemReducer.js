@@ -73,7 +73,7 @@ const itemReducer = (state = initItem, action) => {
                 ...state,
                 todos: state.todos.map(each => {
                     if (each.id != action.editedTask.id) return each; return {
-                        ...each, title: action.editedTask.title, date: action.editedTask.date, detail: newDetail,
+                        ...each, title: action.editedTask.title, date: action.editedTask.date, detail: newDetail, flag: action.editedTask.flag
                     }
 
                 }),
