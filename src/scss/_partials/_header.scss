@@ -2,16 +2,17 @@ header{
     height: 30%;
     .up{
         width: 100%;
-        height: 70%;
+        height: 75%;
         background-image: url(../../assets/mountains.jpg);
         background-position: bottom;
         background-repeat: no-repeat;
         background-size: cover;
         display: flex;
         align-items: flex-end;
+        margin-bottom: -5%;
         .my-day{
             width:100%;
-            height: 50%;
+            height: 55%;
             // border: 1px solid black;
             font-size: 30px;
             padding: 0 20px 10px 20px;
@@ -27,6 +28,7 @@ header{
     .down{
         width: 100%;
         height: 30%;
+        margin-top: 3%;
         .button-wrapper{
             display: flex;
             width: 100%;
