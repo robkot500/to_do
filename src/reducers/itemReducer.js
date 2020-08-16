@@ -122,33 +122,31 @@ const itemReducer = (state = initItem, action) => {
                 todos: [...restTodo, { ...todoList, titleMarked: !todoList.titleMarked }],
 
             }
-
-        case 'EDIT_TASK':
-            // console.log(state.todos);
-            // console.log(action.id)
-            // const toEdit = state.todos.filter(each => {
-            //     return each.id === action.id
-            // })
-
-            // const toNotEdit = state.todos.filter(each => {
-            //     return each.id != action.id
-            // })
-            // console.log('notedit', toNotEdit);
-            // if (toEdit.length > 0) {
-            //     toEdit[0].edit = true
-            // }
-            // else { toEdit[0] = null }
-            // console.log(toEdit);
-            // console.log(toEdit.length);
-            const allTodos = state.todos.map(each => {
-                if (each.id != action.id) return each; return { ...each, edit: true }
-            })
-            console.log(allTodos)
+        case 'CLICK_TO_EDIT_TASK':
+            console.log(action.id);
+            console.log(state.todos)
             return {
                 ...state,
-                todos: [...allTodos]
-                // todos: [...toNotEdit, toEdit[0]]
-            };
+                todos: state.todos.map(each => {
+                    if (each.id != action.id) return each; return { ...each, edit: true }
+                })
+
+            }
+        // case 'EDIT_TASK':
+        //     console.log(action.id)
+        //     console.log(action.editTask)
+
+        //     const allTodos = state.todos.map(each => {
+        //         console.log(each.flag);
+        //         console.log(action.editTask.title)
+        //         if (each.id != action.id) return each; return { ...each, edit: true }
+        //     })
+        //     console.log(allTodos)
+        //     return {
+        //         ...state,
+        //         todos: [...allTodos]
+        //         // todos: [...toNotEdit, toEdit[0]]
+        //     };
         case 'EDIT_TASK_STATE':
             console.log(state.todos);
             console.log(action.task);

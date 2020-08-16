@@ -96,11 +96,9 @@ function Edit(props) {
                         return each; return { ...each, newPoint }
                     })
                 })
-
-
             }
-
         }
+        if (e.target.id === 'selectColor') { console.log(e.target.value); setEditTask({ ...editTask, flag: e.target.value }) }
     }
 
     // const checkPoints = editTask.detail.filter(each => each.point.length > 0)
@@ -112,7 +110,8 @@ function Edit(props) {
         e.preventDefault()
         // setEditTask({ ...editTask, detail: checkPoints })
         // setEditTask({ ...editTask, date: startDate })
-        console.log(editTask.detail);
+        console.log(editTask.flag);
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
         // editTask.date = startDate
         props.editTask(editTask)
         props.addAfterEdit(editTask)
@@ -146,6 +145,13 @@ function Edit(props) {
                         value={editTask.detail[2] ? (editTask.detail[2].point) : (null)}
                         placeholder='optional' id='pointThree' type="text" />
                     <label htmlFor="text">point three</label>
+                    <select id='selectColor' onChange={handleChange}>
+                        <option value="yellow">Miscelanneus-yellow</option>
+                        <option value="green">Personal-green</option>
+                        <option value="red">Urgent!-red</option>
+                        <option value="blue">Work-blue</option>
+                        <option value="purple">Family-purple</option>
+                    </select>
                     <DatePicker
                         selected={startDate}
                         onChange={date => handleDate(date)}

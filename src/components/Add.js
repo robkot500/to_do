@@ -73,13 +73,11 @@ function Add(props) {
                 <input onChange={handleChange} placeholder='optional' id='pointThree' type="text" />
                 <label htmlFor="text">point three</label>
                 <select id='selectColor' onChange={handleChange}>
-                    {/* <select id='selectColor' onChange={e => setNewTask({ ...newTask, flag: e.target.value })}> */}
                     <option value="yellow">Miscelanneus-yellow</option>
                     <option value="green">Personal-green</option>
                     <option value="red">Urgent!-red</option>
                     <option value="blue">Work-blue</option>
                     <option value="purple">Family-purple</option>
-
                 </select>
                 <DatePicker
                     selected={startDate}

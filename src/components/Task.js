@@ -37,7 +37,8 @@ function Task(props) {
     }
     const clickEdit = (item, id) => {
         props.display(item, id)
-        props.editTask(item)
+        props.clickToEditTask(item)
+        console.log(item)
         console.log(item)
     }
 
@@ -92,7 +93,7 @@ const mapDispatchToProps = (dispatch) => {
         pointCheck: (id) => { dispatch({ type: 'CHANGE_CHECK', id: id }) },
         titleCheckTask: (each) => { dispatch({ type: 'CHANGE_TITLE_TASK', each: each }) },
         display: (task, id) => { dispatch({ type: 'DISPLAY', task: task, id: id }) },
-        editTask: (id) => { dispatch({ type: 'EDIT_TASK', id: id }) },
+        clickToEditTask: (id) => { dispatch({ type: 'CLICK_TO_EDIT_TASK', id: id }) },
         editTaskState: () => { dispatch({ type: 'EDIT_TASK_STATE' }) },
     }
 }
