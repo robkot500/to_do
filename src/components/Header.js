@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import Play from './Play'
+import CountDown from './CountDown'
 
 function Header(props) {
+    // console.log(props);
     const [newDate, setNewDate] = useState(new Date())
     useEffect(() => {
         const interval = setInterval(() => {
@@ -28,7 +31,9 @@ function Header(props) {
             props.display(e.target.id)
         }
     }
-
+    const alarmOn = props.items.todos.filter(each => {
+        return each.alarm.isAlarm === true
+    })
     return (
         <header>
             <div className='up'>
@@ -47,6 +52,8 @@ function Header(props) {
                 </div>
                 <div className='button-box'></div>
             </div>
+            {alarmOn.length > 0 ? (alarmOn[0].alarm.isAlarm === true ? <Play /> : null) : (null)}
+
         </header>
     )
 }
@@ -54,7 +61,8 @@ function Header(props) {
 const mapStateToProps = (state) => {
     console.log(state)
     return {
-        position: state.position
+        position: state.position,
+        items: state.item
     }
 }
 const mapDispatchToProps = (dispatch) => {

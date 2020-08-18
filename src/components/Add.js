@@ -14,6 +14,11 @@ function Add(props) {
         date: null,
         edit: false,
         flag: 'yellow',
+        alarm: {
+            setAlarm: null,
+            isAlarm: false,
+            iconOn: false
+        },
         detail: [
             { point: null, pointMarked: false },
             { point: null, pointMarked: false },
@@ -23,7 +28,6 @@ function Add(props) {
 
     const [startDate, setStartDate] = useState(null);
     const [newTask, setNewTask] = useState(initTask)
-    console.log(newTask.title);
 
 
     const handleChange = (e) => {
@@ -53,11 +57,15 @@ function Add(props) {
             })
         } if (e.target.id === 'selectColor') { setNewTask({ ...newTask, flag: e.target.value }) }
         if (e.target.id === 'notes') {
-            // newTask.notes = e.target.value
             setNewTask({ ...newTask, notes: e.target.value })
+        } if (e.target.id === 'alarm') {
+            console.log('alarm', e.target.value);
+            newTask.alarm.setAlarm = e.target.value
+            console.log(newTask.alarm.setAlarm);
+            newTask.alarm.iconOn = true
         }
-        newTask.id = new Date().getTime()
 
+        newTask.id = new Date().getTime()
 
     }
 
@@ -65,11 +73,11 @@ function Add(props) {
 
     const handleSubmit = (e, id) => {
         e.preventDefault()
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', newTask.alarm.iconOn);
         newTask.date = startDate
         props.displayDetail(newTask.id)
         props.addNewTask(newTask)
         props.display('task')
-        console.log(newTask);
 
 
 
@@ -91,12 +99,13 @@ function Add(props) {
                 <input onChange={handleChange} placeholder='optional' id='pointThree' type="text" />
                 <label htmlFor="text">point three</label>
                 <select id='selectColor' onChange={handleChange}>
-                    <option value="yellow">Miscelanneus-yellow</option>
+                    <option value="orange">Miscelanneus-orange</option>
                     <option value="green">Personal-green</option>
                     <option value="red">Urgent!-red</option>
                     <option value="blue">Work-blue</option>
                     <option value="purple">Family-purple</option>
                 </select>
+
                 <DatePicker
                     selected={startDate}
                     onChange={date => handleDate(date)}
@@ -105,6 +114,14 @@ function Add(props) {
                     showTimeInput
                     placeholderText="Click to select a date"
                 />
+                <select id='alarm' onChange={handleChange}>
+                    <option value={null}>---</option>
+                    <option value={startDate}>date</option>
+                    <option value={startDate - (60 * 60 * 1000)}>one hour before</option>
+                    <option value={startDate - (30 * 60 * 1000)}>half an hour before</option>
+                    <option value="blue">Work-blue</option>
+                    <option value="purple">Family-purple</option>
+                </select>
                 <textarea onChange={handleChange} name="notes" id="notes" cols="35" rows="10"></textarea>
                 <button>ADD</button>
             </form >

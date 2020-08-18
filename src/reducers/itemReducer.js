@@ -7,6 +7,11 @@ const initItem = {
             date: new Date(2021, 11, 24, 10, 33),
             edit: false,
             flag: 'green',
+            alarm: {
+                setAlarm: null,
+                isAlarm: false,
+                iconOn: false
+            },
             detail: [
                 { point: 'wake my wife up', pointMarked: false },
                 { point: 'check the weather', pointMarked: false },
@@ -20,7 +25,12 @@ const initItem = {
             id: 2,
             date: new Date(2022, 11, 24, 10, 33),
             edit: false,
-            flag: 'yellow',
+            flag: 'orange',
+            alarm: {
+                setAlarm: null,
+                isAlarm: false,
+                iconOn: false
+            },
             detail: [
                 { point: 'at least 2 km', pointMarked: false },
             ],
@@ -34,6 +44,11 @@ const initItem = {
             date: null,
             edit: false,
             flag: 'purple',
+            alarm: {
+                setAlarm: null,
+                isAlarm: false,
+                iconOn: false
+            },
             detail: [
                 { point: 'only few drinks', pointMarked: false },
                 { point: 'meet new friends', pointMarked: false },
@@ -69,7 +84,8 @@ const itemReducer = (state = initItem, action) => {
 
             }
         case 'ADD_NEW_TASK':
-            console.log(state);
+            console.log(state.todos);
+            console.log('cccccccccccccccccccccccccc', action.newTask);
             return {
                 ...state,
                 todos: [...state.todos, action.newTask],
@@ -173,6 +189,25 @@ const itemReducer = (state = initItem, action) => {
                 ...state,
                 todos: editNot
             };
+
+        case 'ALARM_ON':
+            console.log(state.todos);
+            console.log(action.id);
+
+            return {
+                ...state,
+                todos: state.todos.map(each => { if (each.id != action.id) return each; return { ...each, alarm: { setAlarm: null, isAlarm: true, iconOn: true } } })
+
+            }
+        case 'ALARM_OFF':
+            console.log(state.todos);
+            console.log(action.id);
+
+            return {
+                ...state,
+                todos: state.todos.map(each => { if (each.id != action.id) return each; return { ...each, alarm: { setAlarm: null, isAlarm: false, iconOn: false } } })
+
+            }
     }
     return state
 }

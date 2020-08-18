@@ -9,7 +9,10 @@ import Play from './Play'
 import Edit from './Edit';
 
 function Main(props) {
-    console.log(props);
+    console.log(props.items.todos);
+    // const turnOnAlarm = props.items.todos.filter(each => {
+    //     return each.alarm.isAlarm === true
+    // })
 
     return (
         <div className='mobile'>
@@ -18,6 +21,8 @@ function Main(props) {
             {props.position.position === 'task' ? <Task /> : null}
             {props.position.position === 'add' ? <Add /> : null}
             {props.position.position === 'edit' ? <Edit /> : null}
+            {/* {turnOnAlarm.length > 0 ? (turnOnAlarm[0].alarm.isAlarm === true ? <Play /> : null) : (null)} */}
+
             {/* <Play /> */}
         </div>
     )

@@ -18,9 +18,6 @@
         padding-top: 2%;
         margin-bottom: -2%;
     }
-    // .title-label{
-    //     font-size: 20px;
-    // }
     .title-wrapper{
         height: 100%;
         display: flex;
@@ -38,15 +35,19 @@
     }
   
     .fa-trash-alt{
-        // font-size: 20px;
         cursor: pointer;
         margin: 0 0 0 15px;
     }
     .deadline{
         margin: 0 15px;
     }
+    .fa-bell-slash,
     .fa-bell{
         margin: 0 0 0 15px;
+        color: gray
+    }
+    .fa-bell{
+        color:red
     }
     .check-detail{
         width: 20%;
