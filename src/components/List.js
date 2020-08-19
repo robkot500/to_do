@@ -60,14 +60,13 @@ function List(props) {
                     <div onClick={() => { clickDetail('task', task.id) }} className="check-detail">DETAILS</div>
                     <i onClick={() => { clickDelete(task.id) }} className="fas fa-trash-alt"></i>
                 </div>
-                <CountDown />
+                {/* <CountDown alarmId={task.id} /> */}
             </div >
         )
     })
     return (
         <div className='list-container'>
             {display}
-
         </div >
     )
 }

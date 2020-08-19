@@ -2,14 +2,25 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 function CountDown(props) {
-
-    const newCountDown = props.items.todos.filter(each => {
-        return props.items.selectedItem.id === each.id
+    console.log(props);
+    // let newCountDown = props.items.todos.filter(each => {
+    //     return props.items.selectedItem.id === each.id
+    // })
+    let newCount = props.items.todos.filter(each => {
+        return each.alarm.setAlarm != null
     })
+    console.log(newCount);
+    let newCountDown = newCount.filter(each => { return each.id === props.alarmId })
+    newCountDown[0] ? (console.log('w')) : (newCountDown = props.items.todos);
     console.log(newCountDown);
     const alarmDate = newCountDown[0].date;
+    console.log(alarmDate);
     const [countDownDate, setCountDownDate] = useState(alarmDate)
-
+    useEffect(() => {
+        setCountDownDate(alarmDate)
+    }, [alarmDate]);
+    console.log(countDownDate);
+    console.log('ddddddddddddddddddddddddddddddddddddddddd', props.alarmId);
     useEffect(() => {
         const int = setInterval(function () {
             const now = new Date().getTime();
@@ -20,9 +31,12 @@ function CountDown(props) {
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             console.log(days + "d " + hours + "h "
                 + minutes + "m " + seconds + "s ")
+            // && newCountDown[0].id === props.alarmId
+            console.log(props.alarmId);
             if (distance < 0 && newCountDown[0].date - new Date() <= 1500 && newCountDown[0].date - new Date() >= -1500) {
                 props.alarmOn(newCountDown[0].id)
                 setTimeout(function () { props.alarmOff(newCountDown[0].id) }, 10000);
+                console.log('ooooooooooooooooooo', props.alarmId);
                 clearInterval(int);
             }
             const offAlarm = props.items.todos.filter(each => { return each.id === newCountDown[0].id })
