@@ -4,7 +4,6 @@ import Play from './Play'
 import CountDown from './CountDown'
 
 function Header(props) {
-    // console.log(props);
     const [newDate, setNewDate] = useState(new Date())
     useEffect(() => {
         const interval = setInterval(() => {
@@ -20,7 +19,6 @@ function Header(props) {
     const time = newDate.toLocaleTimeString();
 
     const handleClick = (e) => {
-        console.log('aaaa', e.target.id);
         if (e.target.id === 'list') {
             props.display(e.target.id)
         } if (e.target.id === 'task') {
@@ -39,8 +37,6 @@ function Header(props) {
             <div className='up'>
                 <div className='my-day'>{weekday}
                     <div className='date'>{time}, {date}</div>
-                    {/* <div>{time}</div> */}
-
                 </div>
             </div>
             <div className='down'>
@@ -53,6 +49,7 @@ function Header(props) {
                 <div className='button-box'></div>
             </div>
             {alarmOn.length > 0 ? (alarmOn[0].alarm.isAlarm === true ? <Play /> : null) : (null)}
+
 
         </header>
     )

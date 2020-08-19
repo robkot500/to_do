@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Points from './Points'
-import alarm from './../assets/alarm.mp3'
-import Play from './Play'
+// import alarm from './../assets/alarm.mp3'
 import CountDown from './CountDown'
 
 
@@ -77,7 +76,7 @@ function Task(props) {
                 <div>{itemDetail[0].date != null ? (itemDetail[0].date.toLocaleDateString()) : (null)}</div>
                 <div className="notes">{itemDetail[0].notes}</div>
                 <button onClick={() => { clickEdit(itemDetail[0].id, 'edit') }}>EDIT</button>
-
+                <CountDown />
             </div>
 
         </>

@@ -52,7 +52,6 @@ function List(props) {
                         <input onClick={(id) => { handleTitle(task) }} className='title-check' id={task.title} type="checkbox" checked={task.titleMarked} />
                         <label onClick={(id) => { handleTitle(task) }} className='title-label' htmlFor="todo" data-content={task.title}>{task.title}</label>
                     </div>
-
                 </div>
                 <div className='detail'>
                     <div className="flag"><i class="fas fa-flag" style={{ color: task.flag }}></i></div>
@@ -61,21 +60,19 @@ function List(props) {
                     <div onClick={() => { clickDetail('task', task.id) }} className="check-detail">DETAILS</div>
                     <i onClick={() => { clickDelete(task.id) }} className="fas fa-trash-alt"></i>
                 </div>
-
+                <CountDown />
             </div >
         )
     })
     return (
         <div className='list-container'>
             {display}
-            <CountDown />
+
         </div >
     )
 }
 
 const mapStateToProps = (state, deleteItem) => {
-    console.log('liiii', state);
-
     return {
         items: state.item,
         position: state.position
