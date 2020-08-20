@@ -6,12 +6,12 @@ import "react-datepicker/dist/react-datepicker.css";
 function Alarm(props) {
     const [startDate, setStartDate] = useState(new Date());
 
-    const handleChange = (date) => {
-        // console.log(date.toLocalString())
-        // setStartDate(date)
-        props.addSetDate(date)
-        return date
-    }
+    // const handleChange = (date) => {
+    //     // console.log(date.toLocalString())
+    //     // setStartDate(date)
+    //     props.addSetDate(date)
+    //     return date
+    // }
     return (
         <>
             <div>Podaj datę</div>
@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        addSetDate: (date) => { dispatch({ type: 'ADD_SET_DATE', date: date }) }
+        // addSetDate: (date) => { dispatch({ type: 'ADD_SET_DATE', date: date }) }
 
     }
 }

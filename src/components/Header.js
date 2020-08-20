@@ -32,24 +32,11 @@ function Header(props) {
     const alarmOn = props.items.todos.filter(each => {
         return each.alarm.isAlarm === true
     })
-    const alarmPlay = alarmOn.length > 0 ? (alarmOn.map(each => {
+    const alarms = props.items.todos.map(each => {
         return (
-            <Play />
+            <CountDown alarmId={each.id} />
         )
-    })) : (null)
-    const setAlarm = props.items.todos.filter(each => {
-        return each.alarm.setAlarm != null
     })
-    console.log(setAlarm);
-    const alarms = setAlarm.length > 0 ? (
-        setAlarm.map(each => {
-            console.log(each.id)
-
-            return (
-                <CountDown alarmId={each.id} />
-            )
-        })
-    ) : (null)
 
     return (
         <header>
@@ -67,8 +54,7 @@ function Header(props) {
                 </div>
                 <div className='button-box'></div>
             </div>
-            {/* {alarmOn.length > 0 ? (alarmOn[0].alarm.isAlarm === true ? <Play /> : null) : (null)} */}
-            {alarmPlay}
+            {alarmOn.length > 0 ? (alarmOn[0].alarm.isAlarm === true ? <Play /> : null) : (null)}
             {alarms}
         </header>
     )

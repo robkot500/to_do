@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 function CountDown(props) {
-    console.log(props);
-    // let newCountDown = props.items.todos.filter(each => {
-    //     return props.items.selectedItem.id === each.id
-    // })
+
     let newCount = props.items.todos.filter(each => {
         return each.alarm.setAlarm != null
     })
@@ -16,27 +13,27 @@ function CountDown(props) {
     const alarmDate = newCountDown[0].date;
     console.log(alarmDate);
     const [countDownDate, setCountDownDate] = useState(alarmDate)
-    useEffect(() => {
-        setCountDownDate(alarmDate)
-    }, [alarmDate]);
-    console.log(countDownDate);
-    console.log('ddddddddddddddddddddddddddddddddddddddddd', props.alarmId);
+    // useEffect(() => {
+    //     setCountDownDate(alarmDate)
+    // }, [alarmDate]);
     useEffect(() => {
         const int = setInterval(function () {
             const now = new Date().getTime();
             const distance = countDownDate - now;
+            const oneHourBefore = distance - 3600000;
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             console.log(days + "d " + hours + "h "
                 + minutes + "m " + seconds + "s ")
+
             // && newCountDown[0].id === props.alarmId
-            console.log(props.alarmId);
+            console.log(oneHourBefore);
+            if (oneHourBefore < 0) { console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh', oneHourBefore) }
             if (distance < 0 && newCountDown[0].date - new Date() <= 1500 && newCountDown[0].date - new Date() >= -1500) {
                 props.alarmOn(newCountDown[0].id)
                 setTimeout(function () { props.alarmOff(newCountDown[0].id) }, 10000);
-                console.log('ooooooooooooooooooo', props.alarmId);
                 clearInterval(int);
             }
             const offAlarm = props.items.todos.filter(each => { return each.id === newCountDown[0].id })
