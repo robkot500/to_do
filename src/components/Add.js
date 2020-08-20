@@ -4,16 +4,15 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
 function Add(props) {
-    console.log(props);
-    console.log(props.add.item.todos);
 
     const initTask = {
         title: null,
         titleMarked: false,
         id: null,
-        date: null,
         edit: false,
         flag: 'yellow',
+        date: null,
+        countDown: null,
         alarm: {
             setAlarm: null,
             isAlarm: false,
@@ -35,21 +34,18 @@ function Add(props) {
             newTask.title = e.target.value
             console.log(newTask.title);
         } if (e.target.id === 'pointOne') {
-            // newTask.detail[0] = { point: e.target.value, pointMarked: false }
             setNewTask({
                 ...newTask, detail: newTask.detail.map(each => {
                     if (each != newTask.detail[0]) return each; return { point: e.target.value, pointMarked: false }
                 })
             })
         } if (e.target.id === 'pointTwo') {
-            // newTask.detail[1] = { point: e.target.value, pointMarked: false } 
             setNewTask({
                 ...newTask, detail: newTask.detail.map(each => {
                     if (each != newTask.detail[1]) return each; return { point: e.target.value, pointMarked: false }
                 })
             })
         } if (e.target.id === 'pointThree') {
-            // newTask.detail[2] = { point: e.target.value, pointMarked: false }
             setNewTask({
                 ...newTask, detail: newTask.detail.map(each => {
                     if (each != newTask.detail[2]) return each; return { point: e.target.value, pointMarked: false }
@@ -59,13 +55,16 @@ function Add(props) {
         if (e.target.id === 'notes') {
             setNewTask({ ...newTask, notes: e.target.value })
         } if (e.target.id === 'alarm') {
-            console.log('alarm', e.target.value);
+            // setNewTask({
+            //     ...newTask, alarm: { setAlarm: e.target.value, isAlarm: false, iconOn: true }
+            // })
+            // newTask.alarm.setAlarm = null
             newTask.alarm.setAlarm = e.target.value
-            console.log(newTask.alarm.setAlarm);
             newTask.alarm.iconOn = true
         }
-
-        newTask.id = new Date().getTime()
+        setNewTask({
+            ...newTask, id: new Date().getTime()
+        })
 
     }
 
@@ -73,7 +72,6 @@ function Add(props) {
 
     const handleSubmit = (e, id) => {
         e.preventDefault()
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', newTask.alarm.iconOn);
         newTask.date = startDate
         props.displayDetail(newTask.id)
         props.addNewTask(newTask)
@@ -116,9 +114,11 @@ function Add(props) {
                 />
                 <select id='alarm' onChange={handleChange}>
                     <option value={null}>---</option>
-                    <option value={startDate}>date</option>
-                    <option value={startDate - (60 * 60 * 1000)}>one hour before</option>
-                    <option value={startDate - (30 * 60 * 1000)}>half an hour before</option>
+                    <option>todo time</option>
+                    {/* <option value={startDate}>todo time</option> */}
+
+                    <option value={startDate - 60000}>half an hour before</option>
+                    <option value={startDate - 120000}>an hour before</option>
                     <option value="blue">Work-blue</option>
                     <option value="purple">Family-purple</option>
                 </select>

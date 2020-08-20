@@ -75,6 +75,7 @@ function Task(props) {
                 {alldetails}
                 <div>{itemDetail[0].date != null ? (itemDetail[0].date.toLocaleDateString()) : (null)}</div>
                 <div className="notes">{itemDetail[0].notes}</div>
+                <div>{itemDetail[0].countDown}</div>
                 <button onClick={() => { clickEdit(itemDetail[0].id, 'edit') }}>EDIT</button>
                 <CountDown />
             </div>

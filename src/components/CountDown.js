@@ -3,19 +3,12 @@ import { connect } from 'react-redux'
 
 function CountDown(props) {
 
-    let newCount = props.items.todos.filter(each => {
-        return each.alarm.setAlarm != null
-    })
-    console.log(newCount);
-    let newCountDown = newCount.filter(each => { return each.id === props.alarmId })
-    newCountDown[0] ? (console.log('w')) : (newCountDown = props.items.todos);
-    console.log(newCountDown);
-    const alarmDate = newCountDown[0].date;
-    console.log(alarmDate);
-    const [countDownDate, setCountDownDate] = useState(alarmDate)
-    // useEffect(() => {
-    //     setCountDownDate(alarmDate)
-    // }, [alarmDate]);
+
+    let newCountDown = props.items.todos.filter(each => { return each.id === props.alarmId })
+    !newCountDown[0] ? (newCountDown = props.items.todos) : (console.log('aaa'));
+
+    const [countDownDate, setCountDownDate] = useState(newCountDown[0].date)
+    const alarmTime = props.items.todos.filter(each => { return each.alarm.setAlarm != null })
     useEffect(() => {
         const int = setInterval(function () {
             const now = new Date().getTime();
@@ -27,12 +20,14 @@ function CountDown(props) {
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             console.log(days + "d " + hours + "h "
                 + minutes + "m " + seconds + "s ")
+            const dayHourMinSec = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s "
+            props.countDown(props.alarmId, dayHourMinSec)
 
-            // && newCountDown[0].id === props.alarmId
-            console.log(oneHourBefore);
+            alarmTime[0] ? (alarmTime[0].alarm.setAlarm - now < 0 ? (props.alarmOn(newCountDown[0].id, 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')) : (console.log())) : (console.log())
             if (oneHourBefore < 0) { console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh', oneHourBefore) }
             if (distance < 0 && newCountDown[0].date - new Date() <= 1500 && newCountDown[0].date - new Date() >= -1500) {
-                props.alarmOn(newCountDown[0].id)
+                // props.alarmOn(newCountDown[0].id)
                 setTimeout(function () { props.alarmOff(newCountDown[0].id) }, 10000);
                 clearInterval(int);
             }
@@ -63,6 +58,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         alarmOn: (id) => { dispatch({ type: 'ALARM_ON', id: id }) },
         alarmOff: (id) => { dispatch({ type: 'ALARM_OFF', id: id }) },
+        countDown: (id, count) => { dispatch({ type: 'COUNT_DOWN', id: id, count: count }) }
 
 
     }

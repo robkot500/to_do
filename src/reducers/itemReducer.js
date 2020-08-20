@@ -4,9 +4,10 @@ const initItem = {
             title: 'get out of bed',
             titleMarked: false,
             id: 1,
-            date: new Date(2021, 11, 24, 10, 33),
             edit: false,
             flag: 'green',
+            date: new Date(2021, 11, 24, 10, 33, 0),
+            countDown: null,
             alarm: {
                 setAlarm: null,
                 isAlarm: false,
@@ -23,9 +24,10 @@ const initItem = {
             title: 'walk the dog',
             titleMarked: false,
             id: 2,
-            date: new Date(2022, 11, 24, 10, 33),
             edit: false,
             flag: 'orange',
+            date: new Date(2022, 11, 24, 10, 33, 0),
+            countDown: null,
             alarm: {
                 setAlarm: null,
                 isAlarm: false,
@@ -206,6 +208,16 @@ const itemReducer = (state = initItem, action) => {
             return {
                 ...state,
                 todos: state.todos.map(each => { if (each.id != action.id) return each; return { ...each, alarm: { setAlarm: null, isAlarm: false, iconOn: false } } })
+
+            }
+        case 'COUNT_DOWN':
+            console.log(state.todos.countDown);
+            console.log(action.count);
+            console.log(action.id);
+
+            return {
+                ...state,
+                todos: state.todos.map(each => { if (each.id != action.id) return each; return { ...each, countDown: action.count } })
 
             }
     }
