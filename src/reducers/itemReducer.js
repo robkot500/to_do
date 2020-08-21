@@ -5,7 +5,7 @@ const initItem = {
             titleMarked: false,
             id: 1,
             edit: false,
-            flag: 'green',
+            flag: '#5B63B6',
             date: new Date(2021, 11, 24, 10, 33, 0),
             countDown: null,
             alarm: {
@@ -25,13 +25,13 @@ const initItem = {
             titleMarked: false,
             id: 2,
             edit: false,
-            flag: 'orange',
+            flag: '#7B89F2',
             date: new Date(2022, 11, 24, 10, 33, 0),
             countDown: null,
             alarm: {
                 setAlarm: null,
                 isAlarm: false,
-                iconOn: false
+                iconOn: true
             },
             detail: [
                 { point: 'at least 2 km', pointMarked: false },
@@ -45,7 +45,7 @@ const initItem = {
             id: 3,
             date: null,
             edit: false,
-            flag: 'purple',
+            flag: '#BCC5FF',
             alarm: {
                 setAlarm: null,
                 isAlarm: false,

@@ -1,7 +1,11 @@
-.no-todos-container{
-    @include leisure;
-    .notes{
-        width: 100%;
-        height: 100px;
+.task-container{
+    background-color: $white;
+    .no-todos-container{
+        @include leisure;
+        .notes{
+            width: 100%;
+            height: 100px;
+        }
     }
+
 }

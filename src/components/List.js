@@ -67,6 +67,10 @@ function List(props) {
     return (
         <div className='list-container'>
             {display}
+            <div class="leisure-container">
+                <div class="list-leisure"></div>
+            </div>
+
         </div >
     )
 }

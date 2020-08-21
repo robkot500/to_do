@@ -3,16 +3,19 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        padding-top: 50px;
+        padding-top: 80px;
         height: 70%;
         background-color: $white;
         .no-todos{
             font-size: 30px;
             font-style: italic;
-            margin: 5%;
+            margin: 5% 5% 0 5%;
+            color:$dark-color;
         }
         .leisure{
-            background-image: url('./../../assets/hobby-c.png');
+            // background-image: url('./../../assets/hobby-c.png');
+            background-image: url('./../../assets/coffee7.png');
+
             background-position: center;
             background-size: contain;
             background-repeat: no-repeat;

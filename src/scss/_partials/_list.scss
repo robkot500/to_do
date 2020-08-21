@@ -1,10 +1,34 @@
 .list-container{
     height: 70%;
+    display: flex;
+    flex-direction: column;
+    .leisure-container{
+        width: 100%;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin: 4px 0 0 0;
+    }
+     .list-leisure{
+        width: 50%;
+        // height: auto;
+        height: 100%;
+        background-image: url('./../../assets/coffee7.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+       
+    }
     .item{
         width: 100%;
         height: 20%;
+        flex-basis: 20%;
         border: 0.2px solid gray;
-        margin: 4px 0;
+        margin: 4px 0 0 0;
         border-radius: 10px;
         background-color: $white;
     }
@@ -47,7 +71,7 @@
         color: gray
     }
     .fa-bell{
-        color:red
+        color:#5B63B6;
     }
     .check-detail{
         width: 20%;
@@ -61,6 +85,7 @@
         color: $white;
         font-size: 12px;
     }
+   
 }
 .no-todos-container{
     @include leisure;

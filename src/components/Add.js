@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
+import Popup from "reactjs-popup";
+import Modal from './Modal'
 
 function Add(props) {
 
@@ -83,7 +85,7 @@ function Add(props) {
     const handleDate = (date) => {
         setStartDate(date)
     }
-
+    const handleModal = () => { }
 
     return (
         <>
@@ -114,14 +116,13 @@ function Add(props) {
                 />
                 <select id='alarm' onChange={handleChange}>
                     <option value={null}>---</option>
-                    <option>todo time</option>
-                    {/* <option value={startDate}>todo time</option> */}
-
+                    <option value={startDate}>todo time</option>
                     <option value={startDate - 60000}>half an hour before</option>
                     <option value={startDate - 120000}>an hour before</option>
-                    <option value="blue">Work-blue</option>
+                    <option value="blue">aaaa</option>
                     <option value="purple">Family-purple</option>
                 </select>
+                <Modal handleModal={handleModal()} />
                 <textarea onChange={handleChange} name="notes" id="notes" cols="35" rows="10"></textarea>
                 <button>ADD</button>
             </form >
