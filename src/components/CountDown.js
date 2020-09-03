@@ -13,7 +13,6 @@ function CountDown(props) {
         const int = setInterval(function () {
             const now = new Date().getTime();
             const distance = countDownDate - now;
-            const oneHourBefore = distance - 3600000;
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -24,16 +23,20 @@ function CountDown(props) {
                 + minutes + "m " + seconds + "s "
             props.countDown(props.alarmId, dayHourMinSec)
 
-            alarmTime[0] ? (alarmTime[0].alarm.setAlarm - now < 0 ? (props.alarmOn(newCountDown[0].id, 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')) : (console.log())) : (console.log())
-            if (oneHourBefore < 0) { console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh', oneHourBefore) }
+            // alarmTime[0] ? (alarmTime[0].alarm.setAlarm - now < 0 ? (props.alarmOn(newCountDown[0].id)) : (console.log())) : (console.log())
+            if (alarmTime[0] && alarmTime[0].alarm.setAlarm - now < 0) {
+                props.alarmOn(newCountDown[0].id);
+                setTimeout(() => { props.alarmOff(newCountDown[0].id) }, 10000);
+            }
             if (distance < 0 && newCountDown[0].date - new Date() <= 1500 && newCountDown[0].date - new Date() >= -1500) {
-                // props.alarmOn(newCountDown[0].id)
-                setTimeout(function () { props.alarmOff(newCountDown[0].id) }, 10000);
+                props.alarmOn(newCountDown[0].id)
+                setTimeout(() => { props.alarmOff(newCountDown[0].id) }, 10000);
                 clearInterval(int);
             }
+
             const offAlarm = props.items.todos.filter(each => { return each.id === newCountDown[0].id })
 
-            if (newCountDown[0].alarm.iconOn === false) { clearInterval(int) }
+            // if (newCountDown[0].alarm.iconOn === false) { clearInterval(int) }
 
         }, 1000);
 

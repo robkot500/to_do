@@ -4,19 +4,14 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 
 function Edit(props) {
-    console.log(props.add.item.todos[0]);
     const toEdit = props.add.item.todos.filter(each => {
         return each.edit === true
     })
-    console.log(toEdit[0])
     let initDate
     let initState
     if (toEdit.length > 0) { initDate = toEdit[0].date; initState = toEdit[0] }
     else if (props.add.item.todos.length > 0 && toEdit.length === 0) { initDate = props.add.item.todos[0].date; initState = props.add.item.todos[0]; console.log('wwwwww') }
     else { initDate = null; initState = null }
-    console.log(props.add.item.todos.length)
-    console.log(toEdit.length)
-    console.log(initState)
     const [startDate, setStartDate] = useState(initDate);
     const [editTask, setEditTask] = useState(initState)
     console.log(editTask)
@@ -35,9 +30,6 @@ function Edit(props) {
     const handleDate = (date) => {
         setStartDate(date)
         editTask.date = date
-        console.log(date)
-        console.log(editTask.date)
-        console.log(startDate)
         setEditTask({ ...editTask, date: date })
     }
 
@@ -101,29 +93,13 @@ function Edit(props) {
         if (e.target.id === 'selectColor') { console.log(e.target.value); setEditTask({ ...editTask, flag: e.target.value }) }
     }
 
-    // const checkPoints = editTask.detail.filter(each => each.point.length > 0)
-    // console.log(checkPoints);
-
-
-
     const handleSubmit = (e, id) => {
         e.preventDefault()
-        // setEditTask({ ...editTask, detail: checkPoints })
-        // setEditTask({ ...editTask, date: startDate })
-        console.log(editTask.flag);
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
-        // editTask.date = startDate
         props.editTask(editTask)
         props.addAfterEdit(editTask)
         props.displayDetail(editTask.id)
         props.display('task')
-
-
-
     }
-    // editTask.detail[2].point ? (null) : (setEditTask({...editTask,point:}));
-
-
     return (
         <>
             <div className='edit-container'>
@@ -138,9 +114,6 @@ function Edit(props) {
                         value={editTask.detail[1] ? (editTask.detail[1].point) : (null)}
                         placeholder='optional' id='pointTwo' type="text" />
                     <label htmlFor="text">point two</label>
-                    {/* {editTask.detail[2].point ? (< input onChange={handleChange}
-                    value={editTask.detail[2] ? (editTask.detail[2].point) : (null)}
-                    placeholder='optional' id='pointThree' type="text" />) : (null)} */}
                     <input onChange={handleChange}
                         value={editTask.detail[2] ? (editTask.detail[2].point) : (null)}
                         placeholder='optional' id='pointThree' type="text" />

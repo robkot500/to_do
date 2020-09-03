@@ -119,8 +119,6 @@ function Add(props) {
                     <option value={startDate}>todo time</option>
                     <option value={startDate - 60000}>half an hour before</option>
                     <option value={startDate - 120000}>an hour before</option>
-                    <option value="blue">aaaa</option>
-                    <option value="purple">Family-purple</option>
                 </select>
                 <Modal handleModal={handleModal()} />
                 <textarea onChange={handleChange} name="notes" id="notes" cols="35" rows="10"></textarea>
