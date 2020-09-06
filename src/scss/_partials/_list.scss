@@ -57,28 +57,33 @@
         justify-content: center;
         align-items: center;
     }
+    .flag{
+        width: 7%;
+        margin: 0 2% 0 5%;
+    }
+    .bell{
+        width: 7%;
+    }
   
     .fa-trash-alt{
         cursor: pointer;
-        margin: 0 0 0 15px;
+        margin: 0 5%;
     }
     .deadline{
-        margin: 0 15px;
+        width: 40%;
+        margin: 0 5%;
     }
-    .fa-bell-slash,
-    .fa-bell{
-        margin: 0 0 0 15px;
-        color: gray
-    }
+   
     .fa-bell{
         color:#5B63B6;
+        margin: 0 5%;
     }
     .check-detail{
         width: 20%;
         height: 50%;
         background-color: $main-color;
         border-radius: 6px;
-        // margin: auto;
+        margin: 0 2%;
         display: flex;
         align-items: center;
         justify-content: center;

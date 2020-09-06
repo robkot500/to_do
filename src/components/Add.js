@@ -24,18 +24,22 @@ function Add(props) {
             { point: null, pointMarked: false },
             { point: null, pointMarked: false },
             { point: null, pointMarked: false }
-        ]
+        ],
+        notes: null,
     }
 
     const [startDate, setStartDate] = useState(null);
     const [newTask, setNewTask] = useState(initTask)
-
+    console.log(newTask)
 
     const handleChange = (e) => {
         if (e.target.id === 'newTask') {
-            newTask.title = e.target.value
-            console.log(newTask.title);
-        } if (e.target.id === 'pointOne') {
+            // newTask.title = e.target.value.substring(0, 23)
+            setNewTask({
+                ...newTask, title: e.target.value
+            })
+        }
+        if (e.target.id === 'pointOne') {
             setNewTask({
                 ...newTask, detail: newTask.detail.map(each => {
                     if (each != newTask.detail[0]) return each; return { point: e.target.value, pointMarked: false }
@@ -55,8 +59,10 @@ function Add(props) {
             })
         } if (e.target.id === 'selectColor') { setNewTask({ ...newTask, flag: e.target.value }) }
         if (e.target.id === 'notes') {
-            setNewTask({ ...newTask, notes: e.target.value })
-        } if (e.target.id === 'alarm') {
+            // setNewTask({ ...newTask, notes: e.target.value })
+            newTask.notes = e.target.value
+        }
+        if (e.target.id === 'alarm') {
             // setNewTask({
             //     ...newTask, alarm: { setAlarm: e.target.value, isAlarm: false, iconOn: true }
             // })
@@ -74,6 +80,7 @@ function Add(props) {
 
     const handleSubmit = (e, id) => {
         e.preventDefault()
+        console.log(newTask)
         newTask.date = startDate
         props.displayDetail(newTask.id)
         props.addNewTask(newTask)
@@ -89,7 +96,7 @@ function Add(props) {
 
     return (
         <>
-            <form onSubmit={handleSubmit} type='submit'>
+            <form className="add" onSubmit={handleSubmit} type='submit'>
                 <input onChange={handleChange} id='newTask' type="text" />
                 <label htmlFor="text">new task</label>
                 <input onChange={handleChange} placeholder='optional' id='pointOne' type="text" />
@@ -121,14 +128,13 @@ function Add(props) {
                     <option value={startDate - 120000}>an hour before</option>
                 </select>
                 <Modal handleModal={handleModal()} />
-                <textarea onChange={handleChange} name="notes" id="notes" cols="35" rows="10"></textarea>
+                <textarea className="add-textarea" onChange={handleChange} id="notes" name="notes" cols="35" rows="10"></textarea>
                 <button>ADD</button>
             </form >
         </>
     )
 }
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         add: state,
         position: state.position

@@ -7,7 +7,6 @@ import CountDown from './CountDown'
 
 
 function Task(props) {
-    console.log(props);
     const clickDelete = (id) => {
         props.deleteItem(id)
     }
@@ -15,16 +14,11 @@ function Task(props) {
         props.pointCheck(id)
     }
     const handleTitle = (each) => {
-        console.log(each);
         props.titleCheckTask(each)
     }
-    console.log(props.items);
     const itemDetail = props.items.todos.filter(each => {
-        console.log(props.items.selectedItem);
-        console.log(props.items.selectedItem.id);
         return each.id === props.items.selectedItem.id
     })
-    console.log(itemDetail[0])
     const editTrue = props.items.todos.filter(each => {
         return each.edit === true
     })
@@ -38,8 +32,6 @@ function Task(props) {
     const clickEdit = (item, id) => {
         props.display(item, id)
         props.clickToEditTask(item)
-        console.log(item)
-        console.log(item)
     }
 
     const [details] = itemDetail
@@ -51,7 +43,6 @@ function Task(props) {
             </div>
         )
     }
-    console.log(details.detail);
     const alldetails = details.detail.map(each => {
         if (each.point != null)
             return (
@@ -84,7 +75,6 @@ function Task(props) {
     )
 }
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         items: state.item,
         position: state.position

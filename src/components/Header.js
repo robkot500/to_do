@@ -61,7 +61,6 @@ function Header(props) {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         position: state.position,
         items: state.item

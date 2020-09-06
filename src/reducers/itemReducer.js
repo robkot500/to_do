@@ -211,10 +211,6 @@ const itemReducer = (state = initItem, action) => {
 
             }
         case 'COUNT_DOWN':
-            console.log(state.todos.countDown);
-            console.log(action.count);
-            console.log(action.id);
-
             return {
                 ...state,
                 todos: state.todos.map(each => { if (each.id != action.id) return each; return { ...each, countDown: action.count } })

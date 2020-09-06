@@ -9,7 +9,6 @@ import Play from './Play'
 import Edit from './Edit';
 
 function Main(props) {
-    console.log(props.items.todos);
     // const turnOnAlarm = props.items.todos.filter(each => {
     //     return each.alarm.isAlarm === true
     // })

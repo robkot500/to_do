@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 
 const Modal = (props) => (
-    console.log(props),
     < Popup
         trigger={<span className='pointer'>Here</span>}
 
@@ -19,7 +18,6 @@ const Modal = (props) => (
 
 );
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         items: state.item,
     }

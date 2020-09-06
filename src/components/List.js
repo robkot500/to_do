@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import CountDown from './CountDown'
 
 function List(props) {
-    console.log(props.items.todos);
+    // console.log(props);
     const sortItems = (a, b) => a.id - b.id;
     const sort = props.items.todos.sort(sortItems)
     const clickDelete = (id) => {
@@ -55,12 +55,11 @@ function List(props) {
                 </div>
                 <div className='detail'>
                     <div className="flag"><i class="fas fa-flag" style={{ color: task.flag }}></i></div>
-                    {task.alarm.iconOn === true ? (<i class="fas fa-bell" onClick={() => { handleAlarmOff(task.id) }}></i>) : (<i class="fas fa-bell-slash"></i>)}
+                    <div className="bell">{task.alarm.iconOn === true ? (<i class="fas fa-bell" onClick={() => { handleAlarmOff(task.id) }}></i>) : (<i class="far fa-bell"></i>)}</div>
                     <div className='deadline'>{task.date ? (task.date.toLocaleTimeString([], { timeStyle: 'short' })) : ('date not set')}, {task.date ? (task.date.toLocaleDateString()) : (null)}</div>
                     <div onClick={() => { clickDetail('task', task.id) }} className="check-detail">DETAILS</div>
                     <i onClick={() => { clickDelete(task.id) }} className="fas fa-trash-alt"></i>
                 </div>
-                {/* <CountDown alarmId={task.id} /> */}
             </div >
         )
     })

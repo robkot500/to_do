@@ -5,7 +5,7 @@ function CountDown(props) {
 
 
     let newCountDown = props.items.todos.filter(each => { return each.id === props.alarmId })
-    !newCountDown[0] ? (newCountDown = props.items.todos) : (console.log('aaa'));
+    !newCountDown[0] ? (newCountDown = props.items.todos) : (console.log());
 
     const [countDownDate, setCountDownDate] = useState(newCountDown[0].date)
     const alarmTime = props.items.todos.filter(each => { return each.alarm.setAlarm != null })
@@ -17,8 +17,8 @@ function CountDown(props) {
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            console.log(days + "d " + hours + "h "
-                + minutes + "m " + seconds + "s ")
+            // console.log(days + "d " + hours + "h "
+            //     + minutes + "m " + seconds + "s ")
             const dayHourMinSec = days + "d " + hours + "h "
                 + minutes + "m " + seconds + "s "
             props.countDown(props.alarmId, dayHourMinSec)
@@ -52,7 +52,6 @@ function CountDown(props) {
     )
 }
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         items: state.item,
     }
