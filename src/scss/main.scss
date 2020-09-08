@@ -19,6 +19,7 @@ body{
     font-family: $font;
     background-color: $background;
     overflow-x: hidden;
+    color:$main-color;
 }
 .mobile{
     border: 1px solid $black;

@@ -6,8 +6,7 @@
 label { 
   font-size: 22px;
   font-weight: 600;
-  // color:$main-color
-  color:#444da6;
+  color:$main-color;
 }
 
 
@@ -20,7 +19,7 @@ label {
   // color: blue;
 }
 
-.title-check + .title-label:before { content: "\f096"; } /* unchecked icon */
+.title-check + .title-label:before { content: "\f096";  } /* unchecked icon */
 .title-check + .title-label:before { letter-spacing: 13px;font-size: 22px; } /* space between checkbox and label */
 
 .title-check:checked + .title-label:before { content: "\f046"; } /* checked icon */
@@ -32,10 +31,10 @@ label {
 }
 
 
-.fa-circle-o-notch{
-  font-size: 30px;
-  color: black;
-}
+// .fa-circle-o-notch{
+//   font-size: 30px;
+//   color: black;
+// }
 .point-check{ display:none; } /* to hide the checkbox itself */
 .point-check+ .point-label:before {
   font-family: FontAwesome;
@@ -44,7 +43,7 @@ label {
 }
 
 .point-check + .point-label:before { content: "\f096"; } /* unchecked icon */
-.point-check + .point-label:before { letter-spacing: 13px;font-size: 34px; } /* space between checkbox and label */
+// .point-check + .point-label:before { letter-spacing: 13px;font-size: 34px; } /* space between checkbox and label */
 
 .point-check:checked + .point-label:before { content: "\f046"; } /* checked icon */
 .point-check:checked + .point-label:before { letter-spacing: 10px; color:gray;font-size: 34px;} /* allow space for check mark */
