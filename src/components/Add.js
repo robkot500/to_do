@@ -34,17 +34,22 @@ function Add(props) {
 
     const handleChange = (e) => {
         if (e.target.id === 'newTask') {
+            setNewTask({
+                ...newTask, id: new Date().getTime()
+            });
             // newTask.title = e.target.value.substring(0, 23)
             setNewTask({
                 ...newTask, title: e.target.value
             })
         }
         if (e.target.id === 'pointOne') {
+            console.log('fffffffffffffffffffffffffffffffffffffffff');
             setNewTask({
                 ...newTask, detail: newTask.detail.map(each => {
                     if (each != newTask.detail[0]) return each; return { point: e.target.value, pointMarked: false }
                 })
-            })
+
+            }); console.log(newTask);
         } if (e.target.id === 'pointTwo') {
             setNewTask({
                 ...newTask, detail: newTask.detail.map(each => {
@@ -59,21 +64,19 @@ function Add(props) {
             })
         } if (e.target.id === 'selectColor') { setNewTask({ ...newTask, flag: e.target.value }) }
         if (e.target.id === 'notes') {
-            // setNewTask({ ...newTask, notes: e.target.value })
-            newTask.notes = e.target.value
+            setNewTask({ ...newTask, notes: e.target.value })
+            // newTask.notes = e.target.value
         }
         if (e.target.id === 'alarm') {
-            // setNewTask({
-            //     ...newTask, alarm: { setAlarm: e.target.value, isAlarm: false, iconOn: true }
-            // })
+            setNewTask({
+                ...newTask, alarm: { setAlarm: e.target.value, isAlarm: false, iconOn: true }
+            })
             // newTask.alarm.setAlarm = null
-            newTask.alarm.setAlarm = e.target.value
-            newTask.alarm.iconOn = true
+            // newTask.alarm.setAlarm = e.target.value
+            // newTask.alarm.iconOn = true
         }
-        setNewTask({
-            ...newTask, id: new Date().getTime()
-        })
 
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
     }
 
 

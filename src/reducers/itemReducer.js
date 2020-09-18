@@ -5,7 +5,7 @@ const initItem = {
             titleMarked: false,
             id: 1,
             edit: false,
-            flag: '#5B63B6',
+            flag: 'high',
             date: new Date(2021, 11, 24, 10, 33, 0),
             countDown: null,
             alarm: {
@@ -25,7 +25,7 @@ const initItem = {
             titleMarked: false,
             id: 2,
             edit: false,
-            flag: '#7B89F2',
+            flag: 'medium',
             date: new Date(2022, 11, 24, 10, 33, 0),
             countDown: null,
             alarm: {
@@ -45,7 +45,7 @@ const initItem = {
             id: 3,
             date: null,
             edit: false,
-            flag: '#BCC5FF',
+            flag: 'low',
             alarm: {
                 setAlarm: null,
                 isAlarm: false,

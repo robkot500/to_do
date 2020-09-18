@@ -43,10 +43,18 @@ function Task(props) {
             </div>
         )
     }
+    console.log(itemDetail[0].flag);
+    let styleFlag
+    let flagText
+    if (itemDetail[0].flag === 'high') { styleFlag = '#5B63B6'; flagText = 'high priority' }
+    if (itemDetail[0].flag === 'medium') { styleFlag = '#7B89F2'; flagText = 'medium priority' }
+    if (itemDetail[0].flag === 'low') { styleFlag = '#BCC5FF'; flagText = 'low priority' }
+
+
     const alldetails = details.detail.map(each => {
         if (each.point != null)
             return (
-                <div key={each.point}>
+                <div className='task-point' key={each.point}>
                     <input onClick={(id) => { handlePoint(each.point) }} className='point-check' id={each.point} type="checkbox" checked={each.pointMarked} />
                     <label className='point-label' htmlFor={each.point}>{each.point}</label>
                 </div>
@@ -56,17 +64,26 @@ function Task(props) {
     return (
         <>
             <div className='task-container'>
-                <div className='title'>
-                    <div className='title-wrapper'>
-                        <input onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-check' id={itemDetail[0].title} type="checkbox" checked={itemDetail[0].titleMarked} />
-                        <label onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
+                <div className="title-points-box">
+                    <div className='title-trash-box'>
+                        <div className='title-wrapper'>
+                            <input onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-check' id={itemDetail[0].title} type="checkbox" checked={itemDetail[0].titleMarked} />
+                            <label onClick={(id) => { handleTitle(itemDetail[0]) }} className='title-label' htmlFor="todo" data-content={details.title}>{details.title}</label>
+                        </div>
+                        {/* <i onClick={() => { clickDelete(details.id) }} className="fas fa-trash-alt"></i> */}
                     </div>
-                    <i onClick={() => { clickDelete(details.id) }} className="fas fa-trash-alt"></i>
+                    {alldetails}
+                    <div class="title-points-buttons">
+                        <div classname="button-edit"><i class="fas fa-edit"></i>EDIT</div>
+                        <div className="button-trash"><i class="fas fa-trash-alt"></i>DELETE</div>
+                    </div>
                 </div>
-                {alldetails}
-                <div>{itemDetail[0].date != null ? (itemDetail[0].date.toLocaleDateString()) : (null)}</div>
-                <div className="notes">{itemDetail[0].notes}</div>
-                <div>{itemDetail[0].countDown}</div>
+                {/* <div className="task-line"></div> */}
+                <div className="task-flag"><i class="fas fa-flag" style={{ color: styleFlag }}></i>{flagText}</div>
+                <div className='task-date'><i class="fas fa-calendar-check"></i>{itemDetail[0].date != null ? (itemDetail[0].date.toLocaleDateString()) : ('date not set')}</div>
+                <div><i class="fas fa-stopwatch"></i>{itemDetail[0].countDown}</div>
+                <div className="task-notes-wrapper"><div className='task-notes'>{itemDetail[0].notes}</div></div>
+
                 <button onClick={() => { clickEdit(itemDetail[0].id, 'edit') }}>EDIT</button>
                 <CountDown />
             </div>

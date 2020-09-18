@@ -1,54 +1,49 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
-/*** basic styles ***/
-
-
-label { 
-  font-size: 22px;
-  font-weight: 600;
-  color:$main-color;
-}
-
-
-/*** custom checkboxes ***/
-
 .title-check{ display:none; } /* to hide the checkbox itself */
 .title-check+ .title-label:before {
   font-family: FontAwesome;
   display: inline-block;
-  // color: blue;
 }
-
-.title-check + .title-label:before { content: "\f096";  } /* unchecked icon */
-.title-check + .title-label:before { letter-spacing: 13px;font-size: 22px; } /* space between checkbox and label */
-
-.title-check:checked + .title-label:before { content: "\f046"; } /* checked icon */
-.title-check:checked + .title-label:before { letter-spacing: 10px; color:gray;font-size: 24px; } /* allow space for check mark */
+ /* unchecked icon */
+.title-check + .title-label:before { 
+  content: "\f096";
+  letter-spacing: 1rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+} 
+ /* checked icon */
+.title-check:checked + .title-label:before { 
+  content: "\f046";
+  letter-spacing: 0.7rem; 
+  color:gray;
+  font-size: 1.7rem; } 
 .title-check:checked + .title-label{
+  font-size: 1.4rem;
   text-decoration: line-through;
   color:gray;
-  
+}
+.title-label{
+  font-size: 1.4rem;
 }
 
-
-// .fa-circle-o-notch{
-//   font-size: 30px;
-//   color: black;
-// }
 .point-check{ display:none; } /* to hide the checkbox itself */
 .point-check+ .point-label:before {
   font-family: FontAwesome;
   display: inline-block;
-  // color: blue;
 }
 
 .point-check + .point-label:before { content: "\f096"; } /* unchecked icon */
-// .point-check + .point-label:before { letter-spacing: 13px;font-size: 34px; } /* space between checkbox and label */
+.point-check + .point-label:before { letter-spacing: 1rem;font-size: 1.3rem; } /* space between checkbox and label */
 
 .point-check:checked + .point-label:before { content: "\f046"; } /* checked icon */
-.point-check:checked + .point-label:before { letter-spacing: 10px; color:gray;font-size: 34px;} /* allow space for check mark */
+.point-check:checked + .point-label:before { letter-spacing: 0.8rem; color:gray;font-size: 1.3rem;} /* allow space for check mark */
 .point-check:checked + .point-label{
   text-decoration: line-through;
   color:gray;
+  font-size: 1.1rem;
+}
+.point-label{
+  font-size: 1.1rem;
 }
 
