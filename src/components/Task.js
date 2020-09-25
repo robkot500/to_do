@@ -74,14 +74,17 @@ function Task(props) {
                     </div>
                     {alldetails}
                     <div class="title-points-buttons">
-                        <div classname="button-edit"><i class="fas fa-edit"></i>EDIT</div>
-                        <div className="button-trash"><i class="fas fa-trash-alt"></i>DELETE</div>
+                        <div classname="button-edit"><i onClick={() => { clickEdit(itemDetail[0].id, 'edit') }} class="fas fa-edit"></i>EDIT</div>
+                        <div className="button-trash"><i onClick={() => { clickDelete(details.id) }} class="fas fa-trash-alt"></i>DELETE</div>
                     </div>
                 </div>
                 {/* <div className="task-line"></div> */}
-                <div className="task-flag"><i class="fas fa-flag" style={{ color: styleFlag }}></i>{flagText}</div>
-                <div className='task-date'><i class="fas fa-calendar-check"></i>{itemDetail[0].date != null ? (itemDetail[0].date.toLocaleDateString()) : ('date not set')}</div>
-                <div><i class="fas fa-stopwatch"></i>{itemDetail[0].countDown}</div>
+                <div className='flag-date-box'>
+                    <div className="task-flag"><i class="fas fa-flag" style={{ color: styleFlag }}></i>{flagText}</div>
+                    <div className='task-date'><i class="fas fa-calendar-check"></i>{itemDetail[0].date != null ? (itemDetail[0].date.toLocaleDateString()) : ('date not set')}</div>
+                    <div className='task-count'><i class="fas fa-stopwatch"></i>{itemDetail[0].countDown}</div>
+                </div>
+
                 <div className="task-notes-wrapper"><div className='task-notes'>{itemDetail[0].notes}</div></div>
 
                 <button onClick={() => { clickEdit(itemDetail[0].id, 'edit') }}>EDIT</button>
